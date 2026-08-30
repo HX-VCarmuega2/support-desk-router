@@ -6,7 +6,9 @@
     "expected_domain": "hr",
     "actual_domain": "hr",
     "correct": true,
-    "answer": "You are eligible for 16 weeks of paid parental leave if you are the birthing parent, and 10 weeks if you are the non-birthing parent."
+    "answer": "You are eligible for 16 weeks of paid parental leave if you are the birthing parent, and 10 weeks if you are the non-birthing parent.",
+    "trace_id": "1809f69cb1b165c6dfafcd69e2e0dbaa",
+    "error": null
   },
   {
     "id": 2,
@@ -15,7 +17,9 @@
     "expected_domain": "hr",
     "actual_domain": "hr",
     "correct": true,
-    "answer": "Meridian Cloud follows a business-casual dress code for office days, with no formal dress code for remote work days. Client-facing roles may have additional guidance for meetings, communicated by their manager or department head."
+    "answer": "Meridian Cloud follows a business-casual dress code for office days, with no formal dress code for remote work days. Client-facing roles may have additional guidance for meetings, communicated by their manager or department head.",
+    "trace_id": "9c05fe36d5136ba6abf87a39378c56e2",
+    "error": null
   },
   {
     "id": 3,
@@ -24,7 +28,9 @@
     "expected_domain": "hr",
     "actual_domain": "hr",
     "correct": true,
-    "answer": "You can report a workplace conduct concern to your manager, HR business partner, or through the anonymous ethics hotline available on the intranet. Reports made through the hotline are reviewed by HR within 3 business days, and retaliation against a reporter is a violation of policy."
+    "answer": "You can report a workplace conduct concern to your manager, HR business partner, or through the anonymous ethics hotline available on the intranet. Reports made through the hotline are reviewed by HR within 3 business days, and retaliation against a reporter is a violation of policy.",
+    "trace_id": "ac4f788d3693cad617222b966f12365c",
+    "error": null
   },
   {
     "id": 4,
@@ -33,7 +39,9 @@
     "expected_domain": "hr",
     "actual_domain": "hr",
     "correct": true,
-    "answer": "Yes, full-time employees receive a $50 monthly wellness stipend that can be applied toward gym memberships, fitness classes, or mental health app subscriptions."
+    "answer": "Yes, full-time employees receive a $50 monthly wellness stipend that can be applied toward gym memberships, fitness classes, or mental health app subscriptions. The stipend is submitted as a reimbursement with proof of payment and is processed alongside the monthly expense cycle.",
+    "trace_id": "fec6c2055ca76cebae999b6469b68faa",
+    "error": null
   },
   {
     "id": 5,
@@ -42,7 +50,9 @@
     "expected_domain": "tech",
     "actual_domain": "tech",
     "correct": true,
-    "answer": "If your VPN keeps disconnecting, first check if it is due to inactivity, as the VPN automatically disconnects after 60 minutes of network inactivity. If that's not the case, try restarting the VPN client and checking your local internet connection. If the issue persists, consult the VPN troubleshooting guide on the intranet, and if needed, open a ticket with the error message included."
+    "answer": "If your VPN keeps disconnecting, first check if it is due to inactivity, as the VPN automatically disconnects after 60 minutes of network inactivity. If that's not the case, try restarting the VPN client and checking your local internet connection. If the issue persists, consult the VPN troubleshooting guide on the intranet, and if needed, open a ticket with the error message included.",
+    "trace_id": "afc9f14e4f8430ba36b6a78589149a26",
+    "error": null
   },
   {
     "id": 6,
@@ -51,7 +61,9 @@
     "expected_domain": "tech",
     "actual_domain": "tech",
     "correct": true,
-    "answer": "You should use the \"Report Phishing\" button in the email client, which will forward the message to the security team and remove it from your inbox. It's encouraged to report a suspicious email, even if you're uncertain about it."
+    "answer": "You should use the \"Report Phishing\" button in the email client, which will forward the message to the security team and remove it from your inbox. It's encouraged to report a suspicious email, even if you're uncertain about it.",
+    "trace_id": "85275c76c66cecd31151634acc44de20",
+    "error": null
   },
   {
     "id": 7,
@@ -60,7 +72,9 @@
     "expected_domain": "tech",
     "actual_domain": "tech",
     "correct": true,
-    "answer": "Standard laptops are refreshed every 3 years, or 2 years for engineering roles with higher performance requirements. Employees can request an early refresh if their device no longer meets performance needs, subject to IT review."
+    "answer": "Standard laptops are refreshed every 3 years, or 2 years for engineering roles with higher performance requirements. Employees can request an early refresh if their device no longer meets performance needs, subject to IT review.",
+    "trace_id": "02d30102576908692583be98f2574a49",
+    "error": null
   },
   {
     "id": 8,
@@ -69,7 +83,9 @@
     "expected_domain": "tech",
     "actual_domain": "tech",
     "correct": true,
-    "answer": "You can request access to the staging environment through the IT portal. The request will be approved by the engineering team lead and is typically granted within 1 business day."
+    "answer": "You can request access to the staging environment through the IT portal. The request will be approved by the engineering team lead and is typically granted within 1 business day.",
+    "trace_id": "6e764a991496c2d3d1bd0b163bd4becf",
+    "error": null
   },
   {
     "id": 9,
@@ -78,7 +94,9 @@
     "expected_domain": "finance",
     "actual_domain": "finance",
     "correct": true,
-    "answer": "Meals during business travel are reimbursable up to $75 per day, itemized by meal."
+    "answer": "Meals during business travel are reimbursable up to $75 per day, itemized by meal.",
+    "trace_id": "319295869b2ac8a53e6a8097fc138984",
+    "error": null
   },
   {
     "id": 10,
@@ -87,7 +105,9 @@
     "expected_domain": "finance",
     "actual_domain": "finance",
     "correct": true,
-    "answer": "Customers on monthly plans are invoiced on the same calendar day each month as their initial signup date. Customers on annual plans are invoiced once per year, with a renewal notice sent 30 days before the renewal date."
+    "answer": "Customers on monthly plans are invoiced on the same calendar day each month as their initial signup date. Customers on annual plans are invoiced once per year, with a renewal notice sent 30 days before the renewal date.",
+    "trace_id": "003938d7997fdc60066ad4f91d524959",
+    "error": null
   },
   {
     "id": 11,
@@ -96,7 +116,9 @@
     "expected_domain": "finance",
     "actual_domain": "finance",
     "correct": true,
-    "answer": "The monthly spending limit on a standard corporate card is $2,500."
+    "answer": "The monthly spending limit on a standard corporate card is $2,500.",
+    "trace_id": "edeeffbcef4168074e9ca61fc897b452",
+    "error": null
   },
   {
     "id": 12,
@@ -105,7 +127,9 @@
     "expected_domain": "finance",
     "actual_domain": "finance",
     "correct": true,
-    "answer": "Annual tax documents are issued electronically through the payroll portal by January 31 each year, with a physical copy available on request."
+    "answer": "Annual tax documents are issued electronically through the payroll portal by January 31 each year, with a physical copy available on request.",
+    "trace_id": "7ca7dc280041a6549ee4aa645b90e597",
+    "error": null
   },
   {
     "id": 13,
@@ -114,7 +138,9 @@
     "expected_domain": "finance",
     "actual_domain": "finance",
     "correct": true,
-    "answer": "Direct deposit is set up or updated through the payroll portal by entering bank routing and account numbers. Changes submitted before the payroll cutoff, typically 5 business days before the pay date, take effect in the next paycheck."
+    "answer": "Direct deposit is set up or updated through the payroll portal by entering your bank routing and account numbers. Changes submitted before the payroll cutoff, typically 5 business days before the pay date, will take effect in the next paycheck.",
+    "trace_id": "4f2a7c69ca47bc7857aea07cfa6955db",
+    "error": null
   },
   {
     "id": 14,
@@ -123,7 +149,9 @@
     "expected_domain": "hr",
     "actual_domain": "hr",
     "correct": true,
-    "answer": "The annual merit increase process is based on performance rating, position within the compensation band for the role, and the overall department budget for the cycle. Employees who joined within the last 3 months of the review period are typically excluded from that cycle and included in the next. Compensation is formally reviewed once per year during the annual performance cycle in Q1."
+    "answer": "The annual merit increase process is based on performance rating, position within the compensation band for the role, and the overall department budget for the cycle. Employees who joined within the last 3 months of the review period are typically excluded from that cycle and included in the next. Compensation is formally reviewed once per year during the annual performance cycle in Q1.",
+    "trace_id": "78d49094854c7b314fcb54070b06d0b1",
+    "error": null
   },
   {
     "id": 15,
@@ -132,7 +160,9 @@
     "expected_domain": "finance",
     "actual_domain": "finance",
     "correct": true,
-    "answer": "You should immediately report the lost corporate card to the card issuer's hotline to freeze the account, then notify Finance so a replacement card can be issued. Any unauthorized charges identified must be disputed directly with the card issuer."
+    "answer": "You should immediately report the lost corporate card to the card issuer's hotline to freeze the account, then notify Finance so a replacement card can be issued. Any unauthorized charges identified must be disputed directly with the card issuer.",
+    "trace_id": "a98d68d3a1238da3f8d30b64d1f601b7",
+    "error": null
   },
   {
     "id": 16,
@@ -141,6 +171,8 @@
     "expected_domain": "tech",
     "actual_domain": "tech",
     "correct": true,
-    "answer": "You must report the loss to IT immediately through the emergency hotline so the device can be remotely locked and wiped. If the loss occurred outside a company facility, a police report is required for insurance purposes."
+    "answer": "You must report the loss to IT immediately through the emergency hotline so the device can be remotely locked and wiped. If the loss occurred outside a company facility, a police report is required for insurance purposes.",
+    "trace_id": "63d895f89e351ca24a63baef668203f5",
+    "error": null
   }
 ]

@@ -23,23 +23,47 @@ def load_test_queries() -> list[dict]:
 
 
 def run_all() -> list[dict]:
+    """
+    Run every test case. A single case raising an exception (an API
+    failure, a classification error, ...) is recorded as its own failed
+    result instead of crashing the whole run and losing every result
+    already computed.
+    """
     test_queries = load_test_queries()
     results = []
 
     for case in test_queries:
-        outcome = route(case["question"])
+        try:
+            outcome = route(case["question"])
 
-        results.append(
-            {
-                "id": case["id"],
-                "question": case["question"],
-                "category": case["category"],
-                "expected_domain": case["expected_domain"],
-                "actual_domain": outcome["domain"],
-                "correct": outcome["domain"] == case["expected_domain"],
-                "answer": outcome["answer"],
-            }
-        )
+            results.append(
+                {
+                    "id": case["id"],
+                    "question": case["question"],
+                    "category": case["category"],
+                    "expected_domain": case["expected_domain"],
+                    "actual_domain": outcome["domain"],
+                    "correct": outcome["domain"] == case["expected_domain"],
+                    "answer": outcome["answer"],
+                    "trace_id": outcome.get("trace_id"),
+                    "error": None,
+                }
+            )
+
+        except Exception as error:
+            results.append(
+                {
+                    "id": case["id"],
+                    "question": case["question"],
+                    "category": case["category"],
+                    "expected_domain": case["expected_domain"],
+                    "actual_domain": None,
+                    "correct": False,
+                    "answer": None,
+                    "trace_id": None,
+                    "error": f"{type(error).__name__}: {error}",
+                }
+            )
 
     return results
 
@@ -57,13 +81,16 @@ def print_report(results: list[dict]) -> None:
     print("=" * 70)
 
     for result in results:
-        status = "PASS" if result["correct"] else "FAIL"
+        status = "ERROR" if result["error"] else ("PASS" if result["correct"] else "FAIL")
+        actual = result["actual_domain"] or "-"
         print(
             f"[{status}] #{result['id']:<2} ({result['category']:<9}) "
             f"expected={result['expected_domain']:<7} "
-            f"actual={result['actual_domain']:<7} "
+            f"actual={actual:<7} "
             f"- {result['question']}"
         )
+        if result["error"]:
+            print(f"         -> {result['error']}")
 
     total = len(results)
     correct = sum(1 for r in results if r["correct"])

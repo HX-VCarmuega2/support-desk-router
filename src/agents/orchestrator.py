@@ -21,7 +21,8 @@ from langgraph.graph import END, StateGraph
 from pydantic import BaseModel, Field
 
 from src.agents import finance_agent, hr_agent, tech_agent
-from src.observability import get_callback_handler, get_langfuse_client
+from src.errors import ClassificationError, InvalidQuestionError
+from src.observability import get_callback_handler, safe_flush
 
 load_dotenv()
 
@@ -67,13 +68,40 @@ class OrchestratorState(TypedDict):
     chunks: list[dict]
 
 
+CLASSIFICATION_ATTEMPTS = 2
+
+
 def classify_intent(state: OrchestratorState, config: RunnableConfig) -> dict:
+    """
+    Classify the question into a department.
+
+    The LLM is expected to return structured output matching
+    IntentClassification, but a malformed/incomplete response (the model
+    fails to produce valid structured output) is retried once before
+    giving up, rather than silently guessing a department or crashing
+    with a raw parsing error from deep inside LangChain.
+    """
     llm = ChatOpenAI(model=os.getenv("LLM_MODEL", "gpt-4o-mini"), temperature=0)
     classifier = CLASSIFIER_PROMPT | llm.with_structured_output(IntentClassification)
 
-    result = classifier.invoke({"question": state["question"]}, config=config)
+    last_error: Exception | None = None
 
-    return {"domain": result.domain}
+    for attempt in range(1, CLASSIFICATION_ATTEMPTS + 1):
+        try:
+            result = classifier.invoke({"question": state["question"]}, config=config)
+            return {"domain": result.domain}
+
+        except Exception as error:  # noqa: BLE001 - deliberately broad: any
+            # failure to produce valid structured output (bad tool call,
+            # incomplete JSON, validation error) should trigger a retry,
+            # not just a specific exception type that may vary by
+            # LangChain/provider version.
+            last_error = error
+
+    raise ClassificationError(
+        f"Could not classify question after {CLASSIFICATION_ATTEMPTS} attempts: "
+        f"{state['question']!r}"
+    ) from last_error
 
 
 def run_hr_agent(state: OrchestratorState, config: RunnableConfig) -> dict:
@@ -127,14 +155,27 @@ def route(question: str) -> dict:
     generation all nest under a single trace because the same callback
     handler is threaded through every node via `config`.
 
-    Returns {"question", "domain", "answer", "chunks"}.
+    Returns {"question", "domain", "answer", "chunks", "trace_id"}.
+    `trace_id` is the Langfuse trace id for this run (or None if tracing
+    is unavailable), so a specific result can be cross-referenced back to
+    its full trace in the Langfuse dashboard for auditing.
+
+    Raises InvalidQuestionError if `question` is empty or not a string,
+    ClassificationError if the intent classifier fails after retrying.
     """
+    if not isinstance(question, str) or not question.strip():
+        raise InvalidQuestionError(
+            f"question must be a non-empty string, got: {question!r}"
+        )
+
     app = build_graph()
-    config = {"callbacks": [get_callback_handler()]}
+    handler = get_callback_handler()
+    config = {"callbacks": [handler]}
 
     result = app.invoke({"question": question}, config=config)
+    result["trace_id"] = handler.last_trace_id
 
-    get_langfuse_client().flush()
+    safe_flush()
 
     return result
 

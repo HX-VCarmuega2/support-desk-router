@@ -17,7 +17,8 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.runnables import RunnableConfig, RunnableLambda, RunnablePassthrough
 from langchain_openai import ChatOpenAI
 
-from src.observability import get_callback_handler, get_langfuse_client
+from src.errors import InvalidQuestionError
+from src.observability import get_callback_handler, safe_flush
 from src.retriever import search_chunks
 
 load_dotenv()
@@ -88,7 +89,14 @@ def answer(question: str, config: RunnableConfig | None = None) -> dict:
     agent is run standalone), it creates and flushes its own trace.
 
     Returns {"domain": "hr", "answer": str, "chunks": list[dict]}.
+
+    Raises InvalidQuestionError if `question` is empty or not a string.
     """
+    if not isinstance(question, str) or not question.strip():
+        raise InvalidQuestionError(
+            f"question must be a non-empty string, got: {question!r}"
+        )
+
     standalone_run = config is None
 
     if standalone_run:
@@ -98,7 +106,7 @@ def answer(question: str, config: RunnableConfig | None = None) -> dict:
     result = chain.invoke({"question": question}, config=config)
 
     if standalone_run:
-        get_langfuse_client().flush()
+        safe_flush()
 
     return {
         "domain": DOMAIN,

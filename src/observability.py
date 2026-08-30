@@ -6,6 +6,7 @@ live in one place.
 """
 
 import os
+import warnings
 
 from dotenv import load_dotenv
 from langfuse import Langfuse
@@ -24,3 +25,16 @@ def get_langfuse_client() -> Langfuse:
 
 def get_callback_handler() -> CallbackHandler:
     return CallbackHandler()
+
+
+def safe_flush() -> None:
+    """
+    Flush pending Langfuse traces without letting a tracing failure (bad
+    credentials, Langfuse being temporarily unreachable, etc.) take down
+    an already-successful agent/orchestrator run. Observability should
+    never be a reason a good answer fails to reach the caller.
+    """
+    try:
+        get_langfuse_client().flush()
+    except Exception as error:
+        warnings.warn(f"Langfuse flush failed, trace may be lost: {error}")

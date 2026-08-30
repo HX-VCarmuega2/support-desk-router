@@ -204,9 +204,20 @@ Check the **Traces** view in your Langfuse project after running the orchestrato
 
 ### Test queries
 
-`test_queries.json` has 16 questions: 4 per domain that are unambiguous ("clear"), plus 4 "edge_case" questions that specifically probe the HR/Finance payroll boundary and phrasing that could plausibly point to the wrong domain (e.g. "I lost my corporate card" vs. "I lost my laptop"). `python -m src.run_test_queries` runs all of them against the orchestrator and saves full results to `outputs/test_results.json`.
+`test_queries.json` has 16 questions: 4 per domain that are unambiguous ("clear"), plus 4 "edge_case" questions that specifically probe the HR/Finance payroll boundary and phrasing that could plausibly point to the wrong domain (e.g. "I lost my corporate card" vs. "I lost my laptop"). `python -m src.run_test_queries` runs all of them against the orchestrator and saves full results — including each run's Langfuse `trace_id`, for cross-referencing a specific result back to its full trace — to `outputs/test_results.json`.
 
 Current result: **16/16 (100%)** routed to the expected domain.
+
+### Error handling
+
+`src/errors.py` defines the project's own exception types, kept separate from third-party exceptions (`openai.OpenAIError`, LangChain's parsing errors) so calling code can tell "our logic rejected this" apart from "the provider had a problem":
+
+* **`InvalidQuestionError`** — raised by `orchestrator.route()` and every agent's `answer()` before any API call is made, if `question` is empty, whitespace-only, or not a string. Failing fast here avoids spending an API call on input that was never going to work.
+* **`ClassificationError`** — `classify_intent()` retries once if the LLM fails to produce valid structured output (a malformed tool call, an incomplete response), then raises this instead of either crashing with a raw parser error or silently guessing a department.
+* **Tracing never blocks a good answer.** `observability.safe_flush()` wraps the Langfuse flush call in its own `try/except`; if Langfuse is unreachable, a warning is emitted but the already-generated answer is still returned. An observability outage should never be the reason a correct answer fails to reach the caller.
+* **`run_test_queries.py` isolates failures per question** — one question raising an exception is recorded as its own error row (with the exception type and message) instead of crashing the whole batch and losing every result already computed.
+
+`python -m src.test_error_handling` is a small standalone suite covering the error paths specifically (empty/`None`/whitespace-only questions, an unconfigured domain name) — separate from `test_queries.json`, which only covers routing *correctness*, not failure behavior. None of these cases call the OpenAI or Langfuse APIs, since input validation happens first.
 
 ## Known Limitations
 
@@ -214,7 +225,7 @@ Current result: **16/16 (100%)** routed to the expected domain.
 * **The classifier always picks one of the three domains** — there is no "none of the above" path. A completely unrelated question (e.g. about the weather) still gets routed to whichever domain the LLM judges closest, and that agent will typically respond that it lacks relevant context, but the routing itself doesn't surface "this isn't a support question" as a distinct outcome.
 * **Scoped to 3 domains (HR, Tech, Finance), not 4.** The project brief's scenario also mentions Legal; the deliverable requirements only require a minimum of 3 specialized agents, so Legal was left out of scope rather than added as a fourth shallow domain.
 * **No conversation memory.** Each call to `route()` is independent — there is no multi-turn context, so a follow-up question like "and how do I request it?" would not know what "it" refers to.
-* **No retry/backoff around the OpenAI API.** A transient rate limit or timeout during embedding or generation currently propagates as an error rather than being retried; acceptable for this project's scope, but a gap for a production deployment.
+* **Retries are limited to classification.** `classify_intent()` retries once on a malformed structured-output response, but embedding calls and answer generation have no retry/backoff — a transient rate limit or timeout there still propagates as an error. Acceptable for this project's scope, but a gap for a production deployment.
 * **Knowledge bases are synthetic.** All FAQ content describes a fictional company (Meridian Cloud) generated for this project, not real internal documentation.
 
 ## Status
