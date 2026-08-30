@@ -48,7 +48,7 @@ support-desk-router/
 - [x] Tech and Finance RAG agents
 - [x] Orchestrator with conditional routing (LangGraph)
 - [x] Test query suite
-- [ ] Langfuse tracing
+- [x] Langfuse tracing
 - [ ] Technical decisions writeup
 - [ ] (Bonus) Evaluator agent with Langfuse Score API
 
@@ -145,6 +145,36 @@ python -m src.run_test_queries
 ```
 
 This prints a PASS/FAIL line per question plus overall accuracy, and saves full results (including each generated answer) to `outputs/test_results.json`. Current result: **16/16 (100%)** routed to the expected domain.
+
+## Observability (Langfuse)
+
+Every call to `orchestrator.route()` is traced end-to-end in Langfuse: classification, the routing decision, retrieval, and generation all appear nested under a single trace, not as separate disconnected traces per step.
+
+**How tracing is threaded through the graph:** `route()` builds one `CallbackHandler` and passes it in `config={"callbacks": [...]}` to `app.invoke()`. Each LangGraph node declares a second `config: RunnableConfig` parameter — LangGraph injects the run's config automatically — and forwards that same `config` into the agent it calls (`hr_agent.answer(question, config=config)`), which forwards it again into its own LCEL chain (`chain.invoke(..., config=config)`). Because it is the same config object all the way down, every step reports to the same trace instead of starting a new one.
+
+Each domain agent can also run standalone (`python -m src.agents.hr_agent`) — in that case it builds its own handler and flushes its own trace, so tracing works whether an agent is invoked directly or through the orchestrator.
+
+Verified trace structure (one real trace, `finance` domain question):
+
+```text
+LangGraph (root)
+└─ classify
+   └─ ChatOpenAI (classification call)
+└─ route_by_domain
+└─ finance
+   └─ retrieve_finance_chunks   <- retrieval as its own named, inspectable step
+   └─ ChatPromptTemplate
+   └─ ChatOpenAI (generation call)
+   └─ StrOutputParser
+```
+
+Run the orchestrator, then check the **Traces** view in your Langfuse project to see this structure and inspect inputs/outputs at every step:
+
+```bash
+python -m src.agents.orchestrator
+```
+
+> **Configuration note:** the env var must be named exactly `LANGFUSE_HOST` (not `LANGFUSE_BASE_URL`, used in some Langfuse examples/tutorials). If it's misnamed, `python-dotenv` silently loads `None` for the host and requests fail instead of raising a clear "missing config" error.
 
 ## Setup
 

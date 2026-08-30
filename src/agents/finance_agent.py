@@ -11,9 +11,10 @@ from operator import itemgetter
 from dotenv import load_dotenv
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
-from langchain_core.runnables import RunnableLambda, RunnablePassthrough
+from langchain_core.runnables import RunnableConfig, RunnableLambda, RunnablePassthrough
 from langchain_openai import ChatOpenAI
 
+from src.observability import get_callback_handler, get_langfuse_client
 from src.retriever import search_chunks
 
 load_dotenv()
@@ -67,14 +68,26 @@ def build_chain(model: str | None = None):
     )
 
 
-def answer(question: str) -> dict:
+def answer(question: str, config: RunnableConfig | None = None) -> dict:
     """
     Run the Finance agent for one question.
 
+    If `config` is provided (by the orchestrator), tracing callbacks in it
+    are inherited so this run nests under the caller's trace. If not (the
+    agent is run standalone), it creates and flushes its own trace.
+
     Returns {"domain": "finance", "answer": str, "chunks": list[dict]}.
     """
+    standalone_run = config is None
+
+    if standalone_run:
+        config = {"callbacks": [get_callback_handler()]}
+
     chain = build_chain()
-    result = chain.invoke({"question": question})
+    result = chain.invoke({"question": question}, config=config)
+
+    if standalone_run:
+        get_langfuse_client().flush()
 
     return {
         "domain": DOMAIN,

@@ -15,11 +15,13 @@ from typing import Literal, TypedDict
 
 from dotenv import load_dotenv
 from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.runnables import RunnableConfig
 from langchain_openai import ChatOpenAI
 from langgraph.graph import END, StateGraph
 from pydantic import BaseModel, Field
 
 from src.agents import finance_agent, hr_agent, tech_agent
+from src.observability import get_callback_handler, get_langfuse_client
 
 load_dotenv()
 
@@ -65,27 +67,27 @@ class OrchestratorState(TypedDict):
     chunks: list[dict]
 
 
-def classify_intent(state: OrchestratorState) -> dict:
+def classify_intent(state: OrchestratorState, config: RunnableConfig) -> dict:
     llm = ChatOpenAI(model=os.getenv("LLM_MODEL", "gpt-4o-mini"), temperature=0)
     classifier = CLASSIFIER_PROMPT | llm.with_structured_output(IntentClassification)
 
-    result = classifier.invoke({"question": state["question"]})
+    result = classifier.invoke({"question": state["question"]}, config=config)
 
     return {"domain": result.domain}
 
 
-def run_hr_agent(state: OrchestratorState) -> dict:
-    result = hr_agent.answer(state["question"])
+def run_hr_agent(state: OrchestratorState, config: RunnableConfig) -> dict:
+    result = hr_agent.answer(state["question"], config=config)
     return {"answer": result["answer"], "chunks": result["chunks"]}
 
 
-def run_tech_agent(state: OrchestratorState) -> dict:
-    result = tech_agent.answer(state["question"])
+def run_tech_agent(state: OrchestratorState, config: RunnableConfig) -> dict:
+    result = tech_agent.answer(state["question"], config=config)
     return {"answer": result["answer"], "chunks": result["chunks"]}
 
 
-def run_finance_agent(state: OrchestratorState) -> dict:
-    result = finance_agent.answer(state["question"])
+def run_finance_agent(state: OrchestratorState, config: RunnableConfig) -> dict:
+    result = finance_agent.answer(state["question"], config=config)
     return {"answer": result["answer"], "chunks": result["chunks"]}
 
 
@@ -120,12 +122,21 @@ def build_graph():
 
 def route(question: str) -> dict:
     """
-    Run the full orchestrator for one question.
+    Run the full orchestrator for one question, traced end-to-end in
+    Langfuse: classification, the routing decision, retrieval, and
+    generation all nest under a single trace because the same callback
+    handler is threaded through every node via `config`.
 
     Returns {"question", "domain", "answer", "chunks"}.
     """
     app = build_graph()
-    return app.invoke({"question": question})
+    config = {"callbacks": [get_callback_handler()]}
+
+    result = app.invoke({"question": question}, config=config)
+
+    get_langfuse_client().flush()
+
+    return result
 
 
 if __name__ == "__main__":
