@@ -44,7 +44,7 @@ support-desk-router/
 - [x] Dependencies and environment setup
 - [x] Domain knowledge bases (HR, Tech, Finance)
 - [x] Vector stores per domain
-- [ ] HR RAG agent
+- [x] HR RAG agent
 - [ ] Tech and Finance RAG agents
 - [ ] Orchestrator with conditional routing (LangGraph)
 - [ ] Test query suite
@@ -91,6 +91,26 @@ data/finance_docs/index/{faiss.index, chunks.json}
 ```
 
 Current chunk counts: 54 per domain.
+
+## RAG Agents
+
+Each domain agent (`src/agents/<domain>_agent.py`) is a LangChain LCEL chain with the same shape:
+
+```text
+retrieve (top-k chunks from that domain's FAISS index)
+    -> format context
+    -> prompt (system instructions + context + question)
+    -> LLM
+    -> {"answer": str, "chunks": [...]}
+```
+
+Retrieval is wrapped as a `RunnableLambda` step inside the chain, rather than called as a plain Python function before the chain runs. This keeps retrieval as part of the LangChain execution graph, so once Langfuse tracing is added it appears as its own traced span — needed to debug failed retrievals, not just bad final answers.
+
+The prompt instructs the model to answer strictly from the retrieved context and to say so explicitly when the context is insufficient, instead of guessing. Try it directly:
+
+```bash
+python -m src.agents.hr_agent
+```
 
 ## Setup
 
