@@ -20,13 +20,16 @@ support-desk-router/
 │   └── finance_docs/{finance_faq.md, index/}
 │
 ├── src/
-│   ├── domains.py          # domain -> document/index path registry
-│   ├── chunking.py         # FAQ-aware chunking
-│   ├── embeddings.py       # OpenAI embeddings client
-│   ├── vector_store.py     # builds the 3 FAISS indices
-│   ├── retriever.py        # searches one domain's index
-│   ├── observability.py    # Langfuse client/handler
-│   ├── run_test_queries.py # routing-accuracy test runner
+│   ├── domains.py           # domain -> document/index path registry
+│   ├── chunking.py          # FAQ-aware chunking
+│   ├── embeddings.py        # OpenAI embeddings client
+│   ├── vector_store.py      # builds the 3 FAISS indices
+│   ├── retriever.py         # searches one domain's index
+│   ├── observability.py     # Langfuse client/handler
+│   ├── errors.py            # project-specific exceptions
+│   ├── run_query.py         # CLI: ask the system a question
+│   ├── run_test_queries.py  # routing-accuracy test runner
+│   ├── test_error_handling.py # error-path test suite
 │   └── agents/
 │       ├── orchestrator.py # LangGraph: classify + conditional routing
 │       ├── hr_agent.py
@@ -99,16 +102,25 @@ The project is multiple Python modules rather than a single notebook, so "cell o
    python -m src.vector_store
    ```
 
-2. **Try one domain agent directly** (retrieval + generation for a single domain, no routing):
+2. **Ask the support desk a question** — this is the main entry point:
+
+   ```bash
+   python -m src.run_query "How many weeks of paid parental leave do I get?"
+   ```
+
+   Or run it with no argument to be prompted interactively:
+
+   ```bash
+   python -m src.run_query
+   # Enter your question: How many weeks of paid parental leave do I get?
+   ```
+
+   Either way it prints which department the question was routed to, the grounded answer, the source chunks it was grounded in, and the Langfuse trace ID for that run.
+
+3. **(Development) Try one domain agent directly**, bypassing the orchestrator (retrieval + generation for a single domain only, no routing):
 
    ```bash
    python -m src.agents.hr_agent
-   ```
-
-3. **Run the full orchestrator** (classification + routing + the matching agent), traced in Langfuse:
-
-   ```bash
-   python -m src.agents.orchestrator
    ```
 
 4. **Run the full test query suite** against the orchestrator and get a routing-accuracy report:
@@ -117,20 +129,44 @@ The project is multiple Python modules rather than a single notebook, so "cell o
    python -m src.run_test_queries
    ```
 
+5. **Run the error-handling checks** (does the system fail predictably on bad input, not just succeed on good input):
+
+   ```bash
+   python -m src.test_error_handling
+   ```
+
 ## Usage Example
+
+```text
+$ python -m src.run_query "How many weeks of paid parental leave do I get?"
+
+============================================================
+Routed to: hr
+============================================================
+
+You are eligible for 16 weeks of paid parental leave if you are the
+birthing parent, and 10 weeks if you are the non-birthing parent.
+
+Sources:
+  [0.679] How many weeks of paid parental leave are offered?
+  [0.617] Is parental leave available to non-birthing parents?
+  [0.486] Can an employee take unpaid leave beyond their PTO balance?
+
+Trace ID: 98e664a6d1e0d8c222a14df1a65d781f
+```
+
+To use the orchestrator from your own code instead of the CLI:
 
 ```python
 from src.agents.orchestrator import route
 
 result = route("How many weeks of paid parental leave do I get?")
 
-print(result["domain"])  # "hr"
-print(result["answer"])
-# "You are eligible for 16 weeks of paid parental leave if you are the
-#  birthing parent, and 10 weeks if you are the non-birthing parent."
+result["domain"]     # "hr"
+result["answer"]     # the grounded answer
+result["chunks"]     # source chunks used (id, section, question, similarity)
+result["trace_id"]   # Langfuse trace id for this run
 ```
-
-`result["chunks"]` also contains the retrieved source chunks (id, section, question, similarity score) used to ground that answer.
 
 ## Technical Decisions
 
