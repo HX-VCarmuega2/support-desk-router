@@ -1,0 +1,102 @@
+[
+  {
+    "id": 1,
+    "question": "How many weeks of paid parental leave do I get?",
+    "expected_domain": "hr",
+    "category": "clear"
+  },
+  {
+    "id": 2,
+    "question": "What is the dress code policy?",
+    "expected_domain": "hr",
+    "category": "clear"
+  },
+  {
+    "id": 3,
+    "question": "How do I report a workplace conduct concern?",
+    "expected_domain": "hr",
+    "category": "clear"
+  },
+  {
+    "id": 4,
+    "question": "Does the company offer a wellness stipend?",
+    "expected_domain": "hr",
+    "category": "clear"
+  },
+  {
+    "id": 5,
+    "question": "My VPN keeps disconnecting, what should I do?",
+    "expected_domain": "tech",
+    "category": "clear"
+  },
+  {
+    "id": 6,
+    "question": "How do I report a phishing email?",
+    "expected_domain": "tech",
+    "category": "clear"
+  },
+  {
+    "id": 7,
+    "question": "What is the laptop refresh cycle?",
+    "expected_domain": "tech",
+    "category": "clear"
+  },
+  {
+    "id": 8,
+    "question": "How do I request access to the staging environment?",
+    "expected_domain": "tech",
+    "category": "clear"
+  },
+  {
+    "id": 9,
+    "question": "What is the reimbursement limit for meals during business travel?",
+    "expected_domain": "finance",
+    "category": "clear"
+  },
+  {
+    "id": 10,
+    "question": "How often are customers invoiced for their subscription?",
+    "expected_domain": "finance",
+    "category": "clear"
+  },
+  {
+    "id": 11,
+    "question": "What is the monthly spending limit on a corporate card?",
+    "expected_domain": "finance",
+    "category": "clear"
+  },
+  {
+    "id": 12,
+    "question": "When are annual tax forms issued to employees?",
+    "expected_domain": "finance",
+    "category": "clear"
+  },
+  {
+    "id": 13,
+    "question": "How do I set up direct deposit?",
+    "expected_domain": "finance",
+    "category": "edge_case",
+    "note": "Payroll mechanics vs. HR compensation policy - both KBs mention payroll. Direct deposit setup is a Finance/payroll-processing topic."
+  },
+  {
+    "id": 14,
+    "question": "What is the annual merit increase process?",
+    "expected_domain": "hr",
+    "category": "edge_case",
+    "note": "Compensation decision-making (who gets a raise and why) belongs to HR, unlike payroll mechanics."
+  },
+  {
+    "id": 15,
+    "question": "I lost my corporate card, what do I do?",
+    "expected_domain": "finance",
+    "category": "edge_case",
+    "note": "Phrased like a 'lost item' IT question, but a corporate card is a Finance-owned asset."
+  },
+  {
+    "id": 16,
+    "question": "I lost my laptop, what do I do?",
+    "expected_domain": "tech",
+    "category": "edge_case",
+    "note": "Contrasts with #15: same 'I lost my X' phrasing, different domain based on what was lost."
+  }
+]

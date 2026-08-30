@@ -1,0 +1,146 @@
+[
+  {
+    "id": 1,
+    "question": "How many weeks of paid parental leave do I get?",
+    "category": "clear",
+    "expected_domain": "hr",
+    "actual_domain": "hr",
+    "correct": true,
+    "answer": "You are eligible for 16 weeks of paid parental leave if you are the birthing parent, and 10 weeks if you are the non-birthing parent."
+  },
+  {
+    "id": 2,
+    "question": "What is the dress code policy?",
+    "category": "clear",
+    "expected_domain": "hr",
+    "actual_domain": "hr",
+    "correct": true,
+    "answer": "Meridian Cloud follows a business-casual dress code for office days, with no formal dress code for remote work days. Client-facing roles may have additional guidance for meetings, communicated by their manager or department head."
+  },
+  {
+    "id": 3,
+    "question": "How do I report a workplace conduct concern?",
+    "category": "clear",
+    "expected_domain": "hr",
+    "actual_domain": "hr",
+    "correct": true,
+    "answer": "You can report a workplace conduct concern to your manager, HR business partner, or through the anonymous ethics hotline available on the intranet. Reports made through the hotline are reviewed by HR within 3 business days, and retaliation against a reporter is a violation of policy."
+  },
+  {
+    "id": 4,
+    "question": "Does the company offer a wellness stipend?",
+    "category": "clear",
+    "expected_domain": "hr",
+    "actual_domain": "hr",
+    "correct": true,
+    "answer": "Yes, full-time employees receive a $50 monthly wellness stipend that can be applied toward gym memberships, fitness classes, or mental health app subscriptions."
+  },
+  {
+    "id": 5,
+    "question": "My VPN keeps disconnecting, what should I do?",
+    "category": "clear",
+    "expected_domain": "tech",
+    "actual_domain": "tech",
+    "correct": true,
+    "answer": "If your VPN keeps disconnecting, first check if it is due to inactivity, as the VPN automatically disconnects after 60 minutes of network inactivity. If that's not the case, try restarting the VPN client and checking your local internet connection. If the issue persists, consult the VPN troubleshooting guide on the intranet, and if needed, open a ticket with the error message included."
+  },
+  {
+    "id": 6,
+    "question": "How do I report a phishing email?",
+    "category": "clear",
+    "expected_domain": "tech",
+    "actual_domain": "tech",
+    "correct": true,
+    "answer": "You should use the \"Report Phishing\" button in the email client, which will forward the message to the security team and remove it from your inbox. It's encouraged to report a suspicious email, even if you're uncertain about it."
+  },
+  {
+    "id": 7,
+    "question": "What is the laptop refresh cycle?",
+    "category": "clear",
+    "expected_domain": "tech",
+    "actual_domain": "tech",
+    "correct": true,
+    "answer": "Standard laptops are refreshed every 3 years, or 2 years for engineering roles with higher performance requirements. Employees can request an early refresh if their device no longer meets performance needs, subject to IT review."
+  },
+  {
+    "id": 8,
+    "question": "How do I request access to the staging environment?",
+    "category": "clear",
+    "expected_domain": "tech",
+    "actual_domain": "tech",
+    "correct": true,
+    "answer": "You can request access to the staging environment through the IT portal. The request will be approved by the engineering team lead and is typically granted within 1 business day."
+  },
+  {
+    "id": 9,
+    "question": "What is the reimbursement limit for meals during business travel?",
+    "category": "clear",
+    "expected_domain": "finance",
+    "actual_domain": "finance",
+    "correct": true,
+    "answer": "Meals during business travel are reimbursable up to $75 per day, itemized by meal."
+  },
+  {
+    "id": 10,
+    "question": "How often are customers invoiced for their subscription?",
+    "category": "clear",
+    "expected_domain": "finance",
+    "actual_domain": "finance",
+    "correct": true,
+    "answer": "Customers on monthly plans are invoiced on the same calendar day each month as their initial signup date. Customers on annual plans are invoiced once per year, with a renewal notice sent 30 days before the renewal date."
+  },
+  {
+    "id": 11,
+    "question": "What is the monthly spending limit on a corporate card?",
+    "category": "clear",
+    "expected_domain": "finance",
+    "actual_domain": "finance",
+    "correct": true,
+    "answer": "The monthly spending limit on a standard corporate card is $2,500."
+  },
+  {
+    "id": 12,
+    "question": "When are annual tax forms issued to employees?",
+    "category": "clear",
+    "expected_domain": "finance",
+    "actual_domain": "finance",
+    "correct": true,
+    "answer": "Annual tax documents are issued electronically through the payroll portal by January 31 each year, with a physical copy available on request."
+  },
+  {
+    "id": 13,
+    "question": "How do I set up direct deposit?",
+    "category": "edge_case",
+    "expected_domain": "finance",
+    "actual_domain": "finance",
+    "correct": true,
+    "answer": "Direct deposit is set up or updated through the payroll portal by entering bank routing and account numbers. Changes submitted before the payroll cutoff, typically 5 business days before the pay date, take effect in the next paycheck."
+  },
+  {
+    "id": 14,
+    "question": "What is the annual merit increase process?",
+    "category": "edge_case",
+    "expected_domain": "hr",
+    "actual_domain": "hr",
+    "correct": true,
+    "answer": "The annual merit increase process is based on performance rating, position within the compensation band for the role, and the overall department budget for the cycle. Employees who joined within the last 3 months of the review period are typically excluded from that cycle and included in the next. Compensation is formally reviewed once per year during the annual performance cycle in Q1."
+  },
+  {
+    "id": 15,
+    "question": "I lost my corporate card, what do I do?",
+    "category": "edge_case",
+    "expected_domain": "finance",
+    "actual_domain": "finance",
+    "correct": true,
+    "answer": "You should immediately report the lost corporate card to the card issuer's hotline to freeze the account, then notify Finance so a replacement card can be issued. Any unauthorized charges identified must be disputed directly with the card issuer."
+  },
+  {
+    "id": 16,
+    "question": "I lost my laptop, what do I do?",
+    "category": "edge_case",
+    "expected_domain": "tech",
+    "actual_domain": "tech",
+    "correct": true,
+    "answer": "You must report the loss to IT immediately through the emergency hotline so the device can be remotely locked and wiped. If the loss occurred outside a company facility, a police report is required for insurance purposes."
+  }
+]

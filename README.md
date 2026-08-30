@@ -47,7 +47,7 @@ support-desk-router/
 - [x] HR RAG agent
 - [x] Tech and Finance RAG agents
 - [x] Orchestrator with conditional routing (LangGraph)
-- [ ] Test query suite
+- [x] Test query suite
 - [ ] Langfuse tracing
 - [ ] Technical decisions writeup
 - [ ] (Bonus) Evaluator agent with Langfuse Score API
@@ -133,6 +133,18 @@ Try it directly:
 ```bash
 python -m src.agents.orchestrator
 ```
+
+## Test Queries
+
+`test_queries.json` has 16 questions: 4 per domain that are unambiguous ("clear"), plus 4 "edge_case" questions that specifically probe the HR/Finance payroll boundary and phrasing that could plausibly point to the wrong domain (e.g. "I lost my corporate card" vs. "I lost my laptop").
+
+Run the full suite against the orchestrator and get a routing-accuracy report:
+
+```bash
+python -m src.run_test_queries
+```
+
+This prints a PASS/FAIL line per question plus overall accuracy, and saves full results (including each generated answer) to `outputs/test_results.json`. Current result: **16/16 (100%)** routed to the expected domain.
 
 ## Setup
 
