@@ -172,7 +172,21 @@ def route(question: str) -> dict:
     handler = get_callback_handler()
     config = {"callbacks": [handler]}
 
-    result = app.invoke({"question": question}, config=config)
+    # app.stream() (instead of app.invoke()) yields each node's output as
+    # soon as that node finishes, so progress can be reported while the
+    # graph is still running. invoke() would only return once everything
+    # is done, which — since classification and generation are each a
+    # network call — can look like the program is stuck.
+    result: dict = {"question": question}
+    print("Classifying question...")
+
+    for step in app.stream(result, config=config):
+        for node_name, update in step.items():
+            result.update(update)
+
+            if node_name == "classify":
+                print(f"Routed to: {result['domain']}. Retrieving context and generating answer...")
+
     result["trace_id"] = handler.last_trace_id
 
     safe_flush()

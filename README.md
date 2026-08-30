@@ -115,7 +115,13 @@ The project is multiple Python modules rather than a single notebook, so "cell o
    # Enter your question: How many weeks of paid parental leave do I get?
    ```
 
-   Either way it prints which department the question was routed to, the grounded answer, the source chunks it was grounded in, and the Langfuse trace ID for that run.
+   By default this prints an end-user-facing view: the department, the answer, and the related topic titles it was grounded in — no internal detail. Add `--debug` to also see each source's similarity score and the Langfuse trace ID, for troubleshooting a specific answer:
+
+   ```bash
+   python -m src.run_query "How many weeks of paid parental leave do I get?" --debug
+   ```
+
+   The same full detail is always in the Langfuse trace regardless of this flag — `--debug` only controls what gets printed to the terminal.
 
 3. **(Development) Try one domain agent directly**, bypassing the orchestrator (retrieval + generation for a single domain only, no routing):
 
@@ -137,8 +143,13 @@ The project is multiple Python modules rather than a single notebook, so "cell o
 
 ## Usage Example
 
+End-user view (default):
+
 ```text
 $ python -m src.run_query "How many weeks of paid parental leave do I get?"
+
+Classifying question...
+Routed to: hr. Retrieving context and generating answer...
 
 ============================================================
 Routed to: hr
@@ -147,6 +158,15 @@ Routed to: hr
 You are eligible for 16 weeks of paid parental leave if you are the
 birthing parent, and 10 weeks if you are the non-birthing parent.
 
+Related topics:
+  - How many weeks of paid parental leave are offered?
+  - Is parental leave available to non-birthing parents?
+  - Can an employee take unpaid leave beyond their PTO balance?
+```
+
+Debug view (`--debug`) — same run, with similarity scores and the trace ID for troubleshooting:
+
+```text
 Sources:
   [0.679] How many weeks of paid parental leave are offered?
   [0.617] Is parental leave available to non-birthing parents?
@@ -213,6 +233,8 @@ START -> classify -> (conditional edge, based on classified domain) -> hr | tech
 **Why LangGraph instead of an if/elif in Python:** the branch taken depends on a value computed at runtime (the classifier's output), which is exactly what LangGraph's conditional edges model — a shared `OrchestratorState`, a node that writes a value into it, and an edge function that reads that value to pick the next node. The state also carries the question, domain, answer, and source chunks together as one object, instead of separate variables threaded through function calls.
 
 **Classification** uses `.with_structured_output()` with a Pydantic model restricted to `Literal["hr", "tech", "finance"]`, rather than asking the LLM to output free text and parsing it — this makes an invalid/unroutable classification structurally impossible instead of something to defend against.
+
+**Progress feedback:** `route()` runs the graph with `app.stream(...)` instead of `app.invoke(...)`. `invoke()` blocks until the entire graph finishes, which — since classification and generation are each a network call — can take several seconds with zero output, making the CLI look frozen. `stream()` yields each node's result as soon as that node finishes, so `route()` can print progress ("Classifying question...", then "Routed to: hr. Retrieving context and generating answer...") while the graph is still running.
 
 ### Observability (Langfuse)
 
