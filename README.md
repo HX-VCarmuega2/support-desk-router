@@ -41,7 +41,7 @@ support-desk-router/
 ## Status
 
 - [x] Project scaffold
-- [ ] Dependencies and environment setup
+- [x] Dependencies and environment setup
 - [ ] Domain knowledge bases (HR, Tech, Finance)
 - [ ] Vector stores per domain
 - [ ] HR RAG agent
@@ -54,4 +54,34 @@ support-desk-router/
 
 ## Setup
 
-_To be documented once dependencies are defined (next step)._
+Python 3.13 was used for this project.
+
+Create and activate a virtual environment:
+
+```bash
+python -m venv .venv
+```
+
+Git Bash on Windows:
+
+```bash
+source .venv/Scripts/activate
+```
+
+Install dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+Create a `.env` file based on `.env.example`:
+
+```env
+OPENAI_API_KEY=your-key-here
+LLM_MODEL=gpt-4o-mini
+EMBEDDING_MODEL=text-embedding-3-small
+
+LANGFUSE_PUBLIC_KEY=pk-lf-xxx
+LANGFUSE_SECRET_KEY=sk-lf-xxx
+LANGFUSE_HOST=https://cloud.langfuse.com
+```
