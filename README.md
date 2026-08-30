@@ -45,7 +45,7 @@ support-desk-router/
 - [x] Domain knowledge bases (HR, Tech, Finance)
 - [x] Vector stores per domain
 - [x] HR RAG agent
-- [ ] Tech and Finance RAG agents
+- [x] Tech and Finance RAG agents
 - [ ] Orchestrator with conditional routing (LangGraph)
 - [ ] Test query suite
 - [ ] Langfuse tracing
@@ -106,10 +106,12 @@ retrieve (top-k chunks from that domain's FAISS index)
 
 Retrieval is wrapped as a `RunnableLambda` step inside the chain, rather than called as a plain Python function before the chain runs. This keeps retrieval as part of the LangChain execution graph, so once Langfuse tracing is added it appears as its own traced span — needed to debug failed retrievals, not just bad final answers.
 
-The prompt instructs the model to answer strictly from the retrieved context and to say so explicitly when the context is insufficient, instead of guessing. Try it directly:
+The prompt instructs the model to answer strictly from the retrieved context and to say so explicitly when the context is insufficient, instead of guessing. Try any of them directly:
 
 ```bash
 python -m src.agents.hr_agent
+python -m src.agents.tech_agent
+python -m src.agents.finance_agent
 ```
 
 ## Setup
