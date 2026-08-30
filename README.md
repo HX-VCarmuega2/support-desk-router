@@ -1,8 +1,6 @@
 # Support Desk Router
 
-Support Desk Router is a multi-agent orchestration system for a fictional SaaS support desk. An **orchestrator** classifies the intent of an incoming customer question (HR, IT/Tech, or Finance) and conditionally routes it to a specialized **RAG agent** for that domain, which answers grounded in that domain's internal documentation.
-
-This project is being built incrementally, one working commit at a time. This README grows alongside the code — sections below get filled in as each part is implemented.
+Support Desk Router is a multi-agent orchestration system for a fictional mid-size SaaS company, **Meridian Cloud**. An **orchestrator** classifies the intent of an incoming employee support question (HR, IT/Tech, or Finance) and conditionally routes it to a specialized **RAG agent** for that domain, which answers grounded in that domain's internal documentation.
 
 ## Why this architecture
 
@@ -17,19 +15,26 @@ This project is being built incrementally, one working commit at a time. This RE
 support-desk-router/
 │
 ├── data/
-│   ├── hr_docs/
-│   ├── tech_docs/
-│   └── finance_docs/
+│   ├── hr_docs/{hr_faq.md, index/}
+│   ├── tech_docs/{tech_faq.md, index/}
+│   └── finance_docs/{finance_faq.md, index/}
 │
 ├── src/
-│   ├── agents/
-│   │   ├── orchestrator.py
-│   │   ├── hr_agent.py
-│   │   ├── tech_agent.py
-│   │   └── finance_agent.py
-│   └── multi_agent_system.py
+│   ├── domains.py          # domain -> document/index path registry
+│   ├── chunking.py         # FAQ-aware chunking
+│   ├── embeddings.py       # OpenAI embeddings client
+│   ├── vector_store.py     # builds the 3 FAISS indices
+│   ├── retriever.py        # searches one domain's index
+│   ├── observability.py    # Langfuse client/handler
+│   ├── run_test_queries.py # routing-accuracy test runner
+│   └── agents/
+│       ├── orchestrator.py # LangGraph: classify + conditional routing
+│       ├── hr_agent.py
+│       ├── tech_agent.py
+│       └── finance_agent.py
 │
 ├── outputs/
+│   └── test_results.json
 │
 ├── test_queries.json
 ├── .env.example
@@ -38,25 +43,102 @@ support-desk-router/
 └── README.md
 ```
 
-## Status
+## Setup
 
-- [x] Project scaffold
-- [x] Dependencies and environment setup
-- [x] Domain knowledge bases (HR, Tech, Finance)
-- [x] Vector stores per domain
-- [x] HR RAG agent
-- [x] Tech and Finance RAG agents
-- [x] Orchestrator with conditional routing (LangGraph)
-- [x] Test query suite
-- [x] Langfuse tracing
-- [ ] Technical decisions writeup
-- [ ] (Bonus) Evaluator agent with Langfuse Score API
+Python 3.13 was used for this project.
 
-## Knowledge Bases
+1. Clone this repository and move into it:
+
+   ```bash
+   git clone https://github.com/HX-VCarmuega2/support-desk-router.git
+   cd support-desk-router
+   ```
+
+2. Create and activate a virtual environment:
+
+   ```bash
+   python -m venv .venv
+   source .venv/Scripts/activate   # Git Bash on Windows
+   ```
+
+3. Install dependencies:
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. Create a `.env` file based on `.env.example`:
+
+   ```bash
+   cp .env.example .env
+   ```
+
+   Then open `.env` and **replace every placeholder value with your own real credentials** — the project will not run with the placeholders as-is:
+
+   ```env
+   OPENAI_API_KEY=your-key-here        # <- replace with your real OpenAI API key
+   LLM_MODEL=gpt-4o-mini
+   EMBEDDING_MODEL=text-embedding-3-small
+
+   LANGFUSE_PUBLIC_KEY=pk-lf-xxx        # <- replace with your real Langfuse public key
+   LANGFUSE_SECRET_KEY=sk-lf-xxx        # <- replace with your real Langfuse secret key
+   LANGFUSE_HOST=https://cloud.langfuse.com
+   ```
+
+   - `OPENAI_API_KEY` is required for everything (embeddings + generation) — get one at [platform.openai.com](https://platform.openai.com/api-keys).
+   - Langfuse keys come from **Settings → API Keys** in a [Langfuse Cloud](https://cloud.langfuse.com) project (free tier is enough).
+   - **Configuration gotcha:** the variable must be named exactly `LANGFUSE_HOST`, not `LANGFUSE_BASE_URL` (used in some Langfuse tutorials). If it's misnamed, `python-dotenv` silently loads `None` for the host and requests fail instead of raising a clear "missing config" error.
+
+## How to Run
+
+The project is multiple Python modules rather than a single notebook, so "cell order" becomes "run order". The vector indices are already built and committed to the repo, so steps 1 is only needed if you edit a knowledge base and want to regenerate its index.
+
+1. **(Optional) Rebuild the vector stores**, only needed after editing a file under `data/*_docs/*.md`:
+
+   ```bash
+   python -m src.vector_store
+   ```
+
+2. **Try one domain agent directly** (retrieval + generation for a single domain, no routing):
+
+   ```bash
+   python -m src.agents.hr_agent
+   ```
+
+3. **Run the full orchestrator** (classification + routing + the matching agent), traced in Langfuse:
+
+   ```bash
+   python -m src.agents.orchestrator
+   ```
+
+4. **Run the full test query suite** against the orchestrator and get a routing-accuracy report:
+
+   ```bash
+   python -m src.run_test_queries
+   ```
+
+## Usage Example
+
+```python
+from src.agents.orchestrator import route
+
+result = route("How many weeks of paid parental leave do I get?")
+
+print(result["domain"])  # "hr"
+print(result["answer"])
+# "You are eligible for 16 weeks of paid parental leave if you are the
+#  birthing parent, and 10 weeks if you are the non-birthing parent."
+```
+
+`result["chunks"]` also contains the retrieved source chunks (id, section, question, similarity score) used to ground that answer.
+
+## Technical Decisions
+
+### Knowledge bases
 
 Each domain's knowledge base is a single FAQ-style Markdown document (`data/<domain>_docs/<domain>_faq.md`), following the same FAQ-aware format used in the M2 project (`peopleflow-rag-support`): a `SECTION` header groups related FAQs, and each `FAQ` entry pairs one question with one self-contained answer paragraph. This format was reused because it already proved reliable for chunking — each question/answer pair becomes exactly one retrieval chunk, so chunk count is predictable and every chunk is a complete semantic unit.
 
-All three domains describe the same fictional company, **Meridian Cloud**, a mid-size B2B SaaS company, so that cross-domain test queries (e.g. a question that could plausibly belong to more than one department) are meaningful.
+All three domains describe the same fictional company, Meridian Cloud, so that cross-domain test queries (a question that could plausibly belong to more than one department) are meaningful.
 
 | Domain  | File                                | FAQ entries |
 | ------- | ------------------------------------ | ----------: |
@@ -64,35 +146,11 @@ All three domains describe the same fictional company, **Meridian Cloud**, a mid
 | Tech/IT | `data/tech_docs/tech_faq.md`         |          54 |
 | Finance | `data/finance_docs/finance_faq.md`   |          54 |
 
-## Vector Stores
+### Vector stores
 
-Each domain has its own FAISS index — HR, Tech, and Finance are never mixed into a shared index. This is what makes retrieval domain-aware: a question routed to the HR agent can only ever retrieve HR chunks, even if a Finance chunk happens to be semantically close.
+Each domain has its own FAISS index (`faiss.IndexFlatIP` over L2-normalized `text-embedding-3-small` vectors, i.e. cosine similarity) — HR, Tech, and Finance are never mixed into a shared index. This is what makes retrieval domain-aware: a question routed to the HR agent can only ever retrieve HR chunks, even if a Finance chunk happens to be semantically close. The indices are committed to the repo (`data/*_docs/index/`) so the project runs without needing to pay for re-embedding just to try it.
 
-Build (or rebuild, after editing a knowledge base) all three indices:
-
-```bash
-python -m src.vector_store
-```
-
-This pipeline, per domain:
-
-1. Loads `data/<domain>_docs/<domain>_faq.md`
-2. Splits it into FAQ-aware chunks (one chunk per question/answer pair)
-3. Generates embeddings with `text-embedding-3-small`
-4. Normalizes the vectors and builds a `faiss.IndexFlatIP` index (inner product on normalized vectors = cosine similarity)
-5. Saves the index and chunk metadata under `data/<domain>_docs/index/`
-
-Generated files (committed to the repo so the project runs without rebuilding):
-
-```text
-data/hr_docs/index/{faiss.index, chunks.json}
-data/tech_docs/index/{faiss.index, chunks.json}
-data/finance_docs/index/{faiss.index, chunks.json}
-```
-
-Current chunk counts: 54 per domain.
-
-## RAG Agents
+### RAG agents
 
 Each domain agent (`src/agents/<domain>_agent.py`) is a LangChain LCEL chain with the same shape:
 
@@ -104,19 +162,13 @@ retrieve (top-k chunks from that domain's FAISS index)
     -> {"answer": str, "chunks": [...]}
 ```
 
-Retrieval is wrapped as a `RunnableLambda` step inside the chain, rather than called as a plain Python function before the chain runs. This keeps retrieval as part of the LangChain execution graph, so once Langfuse tracing is added it appears as its own traced span — needed to debug failed retrievals, not just bad final answers.
+Retrieval is wrapped as a `RunnableLambda` step inside the chain, rather than called as a plain Python function before the chain runs. This keeps retrieval as part of the LangChain execution graph, so it appears as its own traced span in Langfuse — needed to debug failed retrievals, not just bad final answers.
 
-The prompt instructs the model to answer strictly from the retrieved context and to say so explicitly when the context is insufficient, instead of guessing. Try any of them directly:
+The prompt instructs the model to answer strictly from the retrieved context and to say so explicitly when the context is insufficient, instead of guessing.
 
-```bash
-python -m src.agents.hr_agent
-python -m src.agents.tech_agent
-python -m src.agents.finance_agent
-```
+### Orchestrator
 
-## Orchestrator
-
-`src/agents/orchestrator.py` classifies each question into a department and routes it to that department's agent, using LangGraph.
+`src/agents/orchestrator.py` classifies each question into a department and routes it to that department's agent, using LangGraph:
 
 ```text
 START -> classify -> (conditional edge, based on classified domain) -> hr | tech | finance -> END
@@ -126,29 +178,9 @@ START -> classify -> (conditional edge, based on classified domain) -> hr | tech
 
 **Classification** uses `.with_structured_output()` with a Pydantic model restricted to `Literal["hr", "tech", "finance"]`, rather than asking the LLM to output free text and parsing it — this makes an invalid/unroutable classification structurally impossible instead of something to defend against.
 
-**Known limitation — HR/Finance payroll boundary:** the HR and Finance knowledge bases both touch payroll (HR covers compensation *decisions* like raises and pay bands; Finance covers payroll *mechanics* like direct deposit setup and pay schedule). Initial testing misrouted "How do I set up direct deposit?" to HR. The classifier's prompt was tightened to state explicitly that payroll mechanics belong to Finance even though HR sets raise amounts — this fixed the observed case, but the boundary remains inherently fuzzy and is worth watching in the test query results (see `test_queries.json`).
+### Observability (Langfuse)
 
-Try it directly:
-
-```bash
-python -m src.agents.orchestrator
-```
-
-## Test Queries
-
-`test_queries.json` has 16 questions: 4 per domain that are unambiguous ("clear"), plus 4 "edge_case" questions that specifically probe the HR/Finance payroll boundary and phrasing that could plausibly point to the wrong domain (e.g. "I lost my corporate card" vs. "I lost my laptop").
-
-Run the full suite against the orchestrator and get a routing-accuracy report:
-
-```bash
-python -m src.run_test_queries
-```
-
-This prints a PASS/FAIL line per question plus overall accuracy, and saves full results (including each generated answer) to `outputs/test_results.json`. Current result: **16/16 (100%)** routed to the expected domain.
-
-## Observability (Langfuse)
-
-Every call to `orchestrator.route()` is traced end-to-end in Langfuse: classification, the routing decision, retrieval, and generation all appear nested under a single trace, not as separate disconnected traces per step.
+Every call to `orchestrator.route()` is traced end-to-end: classification, the routing decision, retrieval, and generation all appear nested under a single trace, not as separate disconnected traces per step.
 
 **How tracing is threaded through the graph:** `route()` builds one `CallbackHandler` and passes it in `config={"callbacks": [...]}` to `app.invoke()`. Each LangGraph node declares a second `config: RunnableConfig` parameter — LangGraph injects the run's config automatically — and forwards that same `config` into the agent it calls (`hr_agent.answer(question, config=config)`), which forwards it again into its own LCEL chain (`chain.invoke(..., config=config)`). Because it is the same config object all the way down, every step reports to the same trace instead of starting a new one.
 
@@ -168,44 +200,33 @@ LangGraph (root)
    └─ StrOutputParser
 ```
 
-Run the orchestrator, then check the **Traces** view in your Langfuse project to see this structure and inspect inputs/outputs at every step:
+Check the **Traces** view in your Langfuse project after running the orchestrator to see this structure and inspect inputs/outputs at every step.
 
-```bash
-python -m src.agents.orchestrator
-```
+### Test queries
 
-> **Configuration note:** the env var must be named exactly `LANGFUSE_HOST` (not `LANGFUSE_BASE_URL`, used in some Langfuse examples/tutorials). If it's misnamed, `python-dotenv` silently loads `None` for the host and requests fail instead of raising a clear "missing config" error.
+`test_queries.json` has 16 questions: 4 per domain that are unambiguous ("clear"), plus 4 "edge_case" questions that specifically probe the HR/Finance payroll boundary and phrasing that could plausibly point to the wrong domain (e.g. "I lost my corporate card" vs. "I lost my laptop"). `python -m src.run_test_queries` runs all of them against the orchestrator and saves full results to `outputs/test_results.json`.
 
-## Setup
+Current result: **16/16 (100%)** routed to the expected domain.
 
-Python 3.13 was used for this project.
+## Known Limitations
 
-Create and activate a virtual environment:
+* **HR/Finance payroll boundary is inherently fuzzy.** HR covers compensation *decisions* (raises, pay bands); Finance covers payroll *mechanics* (direct deposit, pay schedule, tax forms). Initial testing misrouted a direct-deposit question to HR; the classifier's prompt was tightened to state the boundary explicitly, which fixed the observed cases in `test_queries.json`, but a differently-phrased question could still land on the wrong side.
+* **The classifier always picks one of the three domains** — there is no "none of the above" path. A completely unrelated question (e.g. about the weather) still gets routed to whichever domain the LLM judges closest, and that agent will typically respond that it lacks relevant context, but the routing itself doesn't surface "this isn't a support question" as a distinct outcome.
+* **Scoped to 3 domains (HR, Tech, Finance), not 4.** The project brief's scenario also mentions Legal; the deliverable requirements only require a minimum of 3 specialized agents, so Legal was left out of scope rather than added as a fourth shallow domain.
+* **No conversation memory.** Each call to `route()` is independent — there is no multi-turn context, so a follow-up question like "and how do I request it?" would not know what "it" refers to.
+* **No retry/backoff around the OpenAI API.** A transient rate limit or timeout during embedding or generation currently propagates as an error rather than being retried; acceptable for this project's scope, but a gap for a production deployment.
+* **Knowledge bases are synthetic.** All FAQ content describes a fictional company (Meridian Cloud) generated for this project, not real internal documentation.
 
-```bash
-python -m venv .venv
-```
+## Status
 
-Git Bash on Windows:
-
-```bash
-source .venv/Scripts/activate
-```
-
-Install dependencies:
-
-```bash
-pip install -r requirements.txt
-```
-
-Create a `.env` file based on `.env.example`:
-
-```env
-OPENAI_API_KEY=your-key-here
-LLM_MODEL=gpt-4o-mini
-EMBEDDING_MODEL=text-embedding-3-small
-
-LANGFUSE_PUBLIC_KEY=pk-lf-xxx
-LANGFUSE_SECRET_KEY=sk-lf-xxx
-LANGFUSE_HOST=https://cloud.langfuse.com
-```
+- [x] Project scaffold
+- [x] Dependencies and environment setup
+- [x] Domain knowledge bases (HR, Tech, Finance)
+- [x] Vector stores per domain
+- [x] HR RAG agent
+- [x] Tech and Finance RAG agents
+- [x] Orchestrator with conditional routing (LangGraph)
+- [x] Test query suite
+- [x] Langfuse tracing
+- [x] Technical decisions writeup
+- [ ] (Bonus) Evaluator agent with Langfuse Score API
