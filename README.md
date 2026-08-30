@@ -42,7 +42,7 @@ support-desk-router/
 
 - [x] Project scaffold
 - [x] Dependencies and environment setup
-- [ ] Domain knowledge bases (HR, Tech, Finance)
+- [x] Domain knowledge bases (HR, Tech, Finance)
 - [ ] Vector stores per domain
 - [ ] HR RAG agent
 - [ ] Tech and Finance RAG agents
@@ -51,6 +51,18 @@ support-desk-router/
 - [ ] Langfuse tracing
 - [ ] Technical decisions writeup
 - [ ] (Bonus) Evaluator agent with Langfuse Score API
+
+## Knowledge Bases
+
+Each domain's knowledge base is a single FAQ-style Markdown document (`data/<domain>_docs/<domain>_faq.md`), following the same FAQ-aware format used in the M2 project (`peopleflow-rag-support`): a `SECTION` header groups related FAQs, and each `FAQ` entry pairs one question with one self-contained answer paragraph. This format was reused because it already proved reliable for chunking — each question/answer pair becomes exactly one retrieval chunk, so chunk count is predictable and every chunk is a complete semantic unit.
+
+All three domains describe the same fictional company, **Meridian Cloud**, a mid-size B2B SaaS company, so that cross-domain test queries (e.g. a question that could plausibly belong to more than one department) are meaningful.
+
+| Domain  | File                                | FAQ entries |
+| ------- | ------------------------------------ | ----------: |
+| HR      | `data/hr_docs/hr_faq.md`             |          54 |
+| Tech/IT | `data/tech_docs/tech_faq.md`         |          54 |
+| Finance | `data/finance_docs/finance_faq.md`   |          54 |
 
 ## Setup
 

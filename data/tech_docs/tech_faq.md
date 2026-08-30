@@ -1,0 +1,263 @@
+MERIDIAN CLOUD — INTERNAL IT SUPPORT FAQ KNOWLEDGE BASE
+Version: 1.0
+Purpose: Internal support reference for employees of the fictional B2B SaaS company Meridian Cloud, covering IT accounts, hardware, security, and infrastructure.
+
+ABOUT THIS DOCUMENT
+
+Meridian Cloud is a fictional mid-size SaaS company. This knowledge base is intended for the internal IT support desk and for automated support agents answering employee questions about technology, access, and security policy. Some topics are intentionally similar so that retrieval systems can be tested for relevance and precision.
+
+==================================================
+SECTION 1 — ACCOUNT AND ACCESS
+==================================================
+
+FAQ 01 — How does an employee reset their corporate account password?
+
+Employees select "Forgot password" on the corporate SSO login page, which sends a reset link to their registered recovery email. The link expires after 15 minutes and can be used once. IT cannot manually set a password on a user's behalf for security reasons.
+
+FAQ 02 — Is multi-factor authentication required for all employees?
+
+Yes, MFA is mandatory for all employees accessing corporate systems through the SSO provider, using an authenticator app. SMS-based verification is disabled company-wide following a prior phishing incident. New employees configure MFA during account activation on their first day.
+
+FAQ 03 — What happens after too many failed login attempts on the corporate SSO?
+
+The account locks for 30 minutes after 5 consecutive failed attempts within a 10-minute window. During the lockout, IT can manually unlock the account after verifying identity through a secondary channel, such as a video call with camera on.
+
+FAQ 04 — How does an employee request access to a new internal system?
+
+Access requests are submitted through the IT service portal, specifying the system and business justification, and route automatically to the resource owner for approval. Standard requests are provisioned within 1 business day of approval.
+
+FAQ 05 — How long does account access provisioning take for new hires?
+
+Core accounts, including email, SSO, and Slack, are provisioned automatically 2 business days before the start date once onboarding paperwork is complete. Role-specific system access is requested separately by the hiring manager and typically takes 1 additional business day.
+
+FAQ 06 — What is the process for requesting elevated/admin permissions?
+
+Elevated or admin access requires a documented business justification and approval from both the direct manager and the relevant system owner. Admin access is granted with a default expiration of 90 days and must be renewed if still needed.
+
+==================================================
+SECTION 2 — HARDWARE AND EQUIPMENT
+==================================================
+
+FAQ 07 — How does an employee request a laptop repair?
+
+Employees open a ticket in the IT portal describing the issue, and for hardware faults, IT arranges a loaner device while the original is sent for repair or replacement. Most repairs are completed within 5 to 7 business days.
+
+FAQ 08 — What is the laptop refresh cycle for employees?
+
+Standard laptops are refreshed every 3 years, or 2 years for engineering roles with higher performance requirements. Employees can request an early refresh if their device no longer meets performance needs, subject to IT review.
+
+FAQ 09 — How does an employee request additional monitors or peripherals?
+
+Standard peripheral requests, such as a second monitor, keyboard, or mouse, are submitted through the IT portal and are pre-approved up to a standard equipment allowance. Requests beyond the standard allowance require manager approval.
+
+FAQ 10 — What should an employee do if their laptop is lost or stolen?
+
+The employee must report the loss to IT immediately through the emergency hotline so the device can be remotely locked and wiped. A police report is required for insurance purposes if the loss occurred outside a company facility.
+
+FAQ 11 — Does IT support personal devices (BYOD)?
+
+Personal devices can access email and calendar through mobile device management enrollment, but cannot access internal engineering systems or customer data. IT provides limited support for BYOD, primarily for enrollment issues rather than general device troubleshooting.
+
+FAQ 12 — How is loaner equipment requested during a repair?
+
+Loaner laptops are automatically offered when a repair ticket is created and involves more than 1 business day of downtime. Loaners are pre-imaged with standard software and must be returned within 2 business days of receiving the repaired device.
+
+==================================================
+SECTION 3 — SOFTWARE AND LICENSES
+==================================================
+
+FAQ 13 — How does an employee request a new software license?
+
+License requests are submitted through the IT portal with the software name and business justification. Common tools with existing enterprise agreements are typically approved within 1 business day; new vendor tools require a security and procurement review first.
+
+FAQ 14 — What is the approval process for installing non-standard software?
+
+Non-standard software installation requires IT security review to confirm the vendor meets data handling standards, followed by manager approval. Employees with standard laptop permissions cannot install software directly without going through this process.
+
+FAQ 15 — How are unused software licenses reclaimed?
+
+IT reviews license usage quarterly and reclaims licenses inactive for more than 60 days, notifying the assigned user beforehand. Reclaimed licenses are returned to the available pool for reassignment to reduce unnecessary spend.
+
+FAQ 16 — Which software is pre-installed on company laptops?
+
+Standard laptops ship with the corporate browser, VPN client, endpoint security agent, Slack, video conferencing software, and the standard productivity suite. Role-specific software, such as development tools, is installed based on the employee's team.
+
+FAQ 17 — How does an employee report a software bug affecting their work?
+
+Bugs in internally built tools are reported through the internal tools Slack channel or a ticket tagged to the owning engineering team. Bugs in third-party software are reported to IT, which coordinates with the vendor if needed.
+
+==================================================
+SECTION 4 — VPN AND REMOTE ACCESS
+==================================================
+
+FAQ 18 — How does an employee connect to the corporate VPN?
+
+Employees launch the pre-installed VPN client and authenticate using their SSO credentials plus MFA. The VPN is required to access internal engineering systems and any resource not exposed through the public-facing SSO-protected portal.
+
+FAQ 19 — Why does the VPN client disconnect after periods of inactivity?
+
+The VPN automatically disconnects after 60 minutes of network inactivity as a security measure to limit exposure from idle sessions. Reconnecting requires re-authentication but does not require a full MFA challenge if within the same SSO session.
+
+FAQ 20 — Is VPN required to access internal tools while working from home?
+
+Yes, VPN is required for internal-only tools such as internal admin dashboards and staging environments, regardless of work location. Customer-facing production tools accessed through SSO do not require VPN.
+
+FAQ 21 — What should an employee do if the VPN fails to connect?
+
+Employees should first restart the VPN client and check their local internet connection, then consult the VPN troubleshooting guide on the intranet. If the issue persists, a ticket should be opened with the error message included.
+
+FAQ 22 — Are personal devices allowed to connect to the VPN?
+
+Personal devices are not permitted to connect to the corporate VPN under standard policy, since VPN access is scoped to company-managed devices with endpoint security installed. Exceptions require a documented security exception approved by IT leadership.
+
+==================================================
+SECTION 5 — SECURITY AND PHISHING
+==================================================
+
+FAQ 23 — How should an employee report a suspected phishing email?
+
+Employees use the "Report Phishing" button in the email client, which forwards the message to the security team and removes it from the inbox. Reporting a suspicious email, even if uncertain, is always encouraged over ignoring it.
+
+FAQ 24 — What is the company's policy on password reuse?
+
+Passwords must not be reused across the last 10 passwords and must not match passwords used on any personal accounts. The password manager provided to all employees is required for storing any credentials beyond the SSO password.
+
+FAQ 25 — How often are mandatory security awareness trainings conducted?
+
+Security awareness training is mandatory annually for all employees, with additional phishing simulation exercises conducted quarterly. Employees who fail a simulated phishing test are required to complete a short refresher module.
+
+FAQ 26 — What should an employee do if they clicked a suspicious link?
+
+The employee should disconnect from the network, avoid entering any credentials if a login page appeared, and immediately report the incident to the security team through the emergency channel. Delaying the report increases the risk of compromise spreading.
+
+FAQ 27 — Is USB storage device usage restricted on company laptops?
+
+USB storage devices are blocked by default on all company laptops through endpoint policy. Exceptions for specific business needs, such as hardware testing, require a documented request approved by both the manager and IT security.
+
+FAQ 28 — How are security incidents classified by severity?
+
+Incidents are classified as Low, Medium, High, or Critical based on data exposure and system impact. Critical incidents trigger immediate escalation to the security lead and, if customer data is involved, to the legal and communications teams.
+
+==================================================
+SECTION 6 — INCIDENT REPORTING AND SUPPORT TICKETS
+==================================================
+
+FAQ 29 — How does an employee open an IT support ticket?
+
+Tickets are opened through the IT portal or by emailing the support alias, which automatically creates a ticket. Employees should include a clear description, screenshots if applicable, and the urgency level to help with triage.
+
+FAQ 30 — What are the response time SLAs for IT tickets by priority?
+
+Critical issues, such as full system outages, receive a response within 30 minutes. High priority issues are addressed within 4 hours, standard requests within 1 business day, and low priority requests within 3 business days.
+
+FAQ 31 — How does an employee escalate an unresolved ticket?
+
+Tickets open beyond their SLA can be escalated by replying "escalate" in the ticket thread or contacting the IT team lead directly. Escalated tickets are reviewed within 2 hours during business hours.
+
+FAQ 32 — What information should be included when reporting an outage?
+
+Reports should include the affected system, the time the issue started, error messages, the number of people impacted, and any troubleshooting already attempted. This information significantly speeds up diagnosis.
+
+FAQ 33 — Is after-hours IT support available?
+
+After-hours support is available only for Critical severity incidents, such as company-wide outages, through the emergency on-call line. Standard requests submitted after hours are queued and addressed the next business day.
+
+==================================================
+SECTION 7 — INFRASTRUCTURE AND ENVIRONMENTS
+==================================================
+
+FAQ 34 — How does an engineer request access to the staging environment?
+
+Staging access is requested through the IT portal and approved by the engineering team lead, typically granted within 1 business day. Staging access does not require the same approval chain as production access.
+
+FAQ 35 — What is the approval process for production database access?
+
+Production database access requires approval from both the engineering manager and the infrastructure lead, and is logged and reviewed monthly. Direct write access to production is restricted to a small on-call group; most engineers have read-only access.
+
+FAQ 36 — How are cloud infrastructure costs monitored and capped?
+
+Each team has a monthly cloud spend budget monitored through automated alerts at 80% and 100% of the budget. Sustained overspend triggers a review with the infrastructure team to identify and address the cause.
+
+FAQ 37 — What is the deployment freeze policy around holidays?
+
+Non-critical deployments are frozen during the last week of December and the first week of January, as well as 48 hours before major company events. Critical bug fixes and security patches are exempt from the freeze with lead approval.
+
+FAQ 38 — How does a team request a new cloud resource or service?
+
+New cloud resource requests go through the infrastructure team via the IT portal, including expected cost and business justification. Requests involving a new vendor or service category also require a security review before provisioning.
+
+==================================================
+SECTION 8 — DATA AND BACKUP POLICIES
+==================================================
+
+FAQ 39 — How often are company systems backed up?
+
+Production databases are backed up continuously with point-in-time recovery, while internal systems are backed up nightly. Backup integrity is tested through a quarterly restore drill conducted by the infrastructure team.
+
+FAQ 40 — What is the data retention policy for deleted customer accounts?
+
+Deleted customer account data is retained in backups for 30 days to support recovery from accidental deletion, then permanently purged. This retention period is disclosed in the customer-facing data processing agreement.
+
+FAQ 41 — How does an employee request a file restore from backup?
+
+File restore requests are submitted through the IT portal specifying the file location and approximate date needed, and are typically fulfilled within 1 business day for standard internal systems from the available backup window.
+
+FAQ 42 — What is the policy on storing company data on personal cloud drives?
+
+Storing company data, especially customer or financial data, on personal cloud storage such as a personal Google Drive is prohibited under company policy. Approved cloud storage is limited to company-managed accounts with appropriate access controls.
+
+FAQ 43 — How is customer data encrypted at rest and in transit?
+
+Customer data is encrypted at rest using industry-standard encryption and in transit using TLS for all connections. Encryption keys are managed through a dedicated key management service with restricted access logged for audit purposes.
+
+==================================================
+SECTION 9 — DEVICE MANAGEMENT
+==================================================
+
+FAQ 44 — Are company laptops required to have full-disk encryption?
+
+Yes, full-disk encryption is enabled by default on all company laptops as part of the standard imaging process and cannot be disabled by the end user. Compliance is verified automatically through the endpoint management system.
+
+FAQ 45 — What mobile device management (MDM) policies apply to phones accessing email?
+
+Any device, personal or company-owned, accessing corporate email or calendar must enroll in MDM, which enforces a passcode and allows remote wipe of the corporate data container. Personal photos and apps outside the container are not affected by a remote wipe.
+
+FAQ 46 — How does IT remotely wipe a lost or stolen device?
+
+Once a loss is reported, IT initiates a remote wipe command through the endpoint management console, which executes the next time the device connects to the internet. The wipe is logged and confirmed once the device checks in.
+
+FAQ 47 — What is required before decommissioning an old laptop?
+
+Decommissioned laptops must have all data securely erased following the company's data destruction standard before being reallocated or recycled. IT maintains a certificate of destruction log for compliance and audit purposes.
+
+FAQ 48 — Are employees allowed to install their own operating system on company hardware?
+
+Employees are not permitted to reimage or install an alternate operating system on company-managed hardware, as this breaks compliance with endpoint security and encryption requirements. Requests for specialized OS needs should go through IT for an approved exception.
+
+==================================================
+SECTION 10 — ADDITIONAL SUPPORT TOPICS
+==================================================
+
+FAQ 49 — How does an employee request a printer setup in the office?
+
+Printer setup requests are submitted through the IT portal, and standard office printers are pre-configured on the corporate network, requiring only driver installation. IT can walk employees through setup remotely or in person at office locations.
+
+FAQ 50 — What is the process to reset an authenticator app after a phone upgrade?
+
+Employees should transfer the authenticator app using its built-in backup feature before upgrading phones whenever possible. If MFA access is lost, the employee contacts IT for identity verification and a manual MFA reset on the account.
+
+FAQ 51 — How are shared team accounts (like a Slack bot) provisioned?
+
+Shared or service accounts require a named owner and business justification, requested through the IT portal, and are subject to the same password and MFA policies as individual accounts where technically supported. Ownership is reviewed annually.
+
+FAQ 52 — What is the guest Wi-Fi policy for visitors?
+
+Guest Wi-Fi is available at all office locations, isolated from the internal corporate network, and requires a temporary access code issued by front desk staff or the hosting employee. Guest access expires automatically after 24 hours.
+
+FAQ 53 — How does an employee request a domain/DNS change?
+
+DNS and domain changes are requested through the infrastructure team via the IT portal and require review due to their potential impact on production services. Non-urgent changes are typically completed within 2 business days.
+
+FAQ 54 — What is the on-call rotation escalation policy for engineering?
+
+Each engineering team maintains a weekly on-call rotation, with a documented escalation path to a secondary responder if the primary does not acknowledge an alert within 15 minutes. On-call schedules and escalation policies are maintained in the incident management tool.
