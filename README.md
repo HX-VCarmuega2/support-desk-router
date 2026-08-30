@@ -46,7 +46,7 @@ support-desk-router/
 - [x] Vector stores per domain
 - [x] HR RAG agent
 - [x] Tech and Finance RAG agents
-- [ ] Orchestrator with conditional routing (LangGraph)
+- [x] Orchestrator with conditional routing (LangGraph)
 - [ ] Test query suite
 - [ ] Langfuse tracing
 - [ ] Technical decisions writeup
@@ -112,6 +112,26 @@ The prompt instructs the model to answer strictly from the retrieved context and
 python -m src.agents.hr_agent
 python -m src.agents.tech_agent
 python -m src.agents.finance_agent
+```
+
+## Orchestrator
+
+`src/agents/orchestrator.py` classifies each question into a department and routes it to that department's agent, using LangGraph.
+
+```text
+START -> classify -> (conditional edge, based on classified domain) -> hr | tech | finance -> END
+```
+
+**Why LangGraph instead of an if/elif in Python:** the branch taken depends on a value computed at runtime (the classifier's output), which is exactly what LangGraph's conditional edges model — a shared `OrchestratorState`, a node that writes a value into it, and an edge function that reads that value to pick the next node. The state also carries the question, domain, answer, and source chunks together as one object, instead of separate variables threaded through function calls.
+
+**Classification** uses `.with_structured_output()` with a Pydantic model restricted to `Literal["hr", "tech", "finance"]`, rather than asking the LLM to output free text and parsing it — this makes an invalid/unroutable classification structurally impossible instead of something to defend against.
+
+**Known limitation — HR/Finance payroll boundary:** the HR and Finance knowledge bases both touch payroll (HR covers compensation *decisions* like raises and pay bands; Finance covers payroll *mechanics* like direct deposit setup and pay schedule). Initial testing misrouted "How do I set up direct deposit?" to HR. The classifier's prompt was tightened to state explicitly that payroll mechanics belong to Finance even though HR sets raise amounts — this fixed the observed case, but the boundary remains inherently fuzzy and is worth watching in the test query results (see `test_queries.json`).
+
+Try it directly:
+
+```bash
+python -m src.agents.orchestrator
 ```
 
 ## Setup
