@@ -26,9 +26,11 @@ support-desk-router/
 │   ├── vector_store.py      # builds the 3 FAISS indices
 │   ├── retriever.py         # searches one domain's index
 │   ├── observability.py     # Langfuse client/handler
-│   ├── errors.py            # project-specific exceptions
-│   ├── run_query.py         # CLI: ask the system a question
-│   ├── run_test_queries.py  # routing-accuracy test runner
+│   ├── errors.py             # project-specific exceptions
+│   ├── evaluator.py          # bonus: LLM-as-judge + Langfuse Score API
+│   ├── run_query.py          # CLI: ask the system a question
+│   ├── run_test_queries.py   # routing-accuracy test runner
+│   ├── run_evaluation.py     # bonus: scores outputs/test_results.json
 │   ├── test_error_handling.py # error-path test suite
 │   └── agents/
 │       ├── orchestrator.py # LangGraph: classify + conditional routing
@@ -37,7 +39,8 @@ support-desk-router/
 │       └── finance_agent.py
 │
 ├── outputs/
-│   └── test_results.json
+│   ├── test_results.json
+│   └── evaluation_results.json
 │
 ├── test_queries.json
 ├── .env.example
@@ -139,6 +142,12 @@ The project is multiple Python modules rather than a single notebook, so "cell o
 
    ```bash
    python -m src.test_error_handling
+   ```
+
+6. **(Bonus) Evaluate the generated answers** and push quality scores to Langfuse — run after step 4, since it evaluates whatever is currently in `outputs/test_results.json`:
+
+   ```bash
+   python -m src.run_evaluation
    ```
 
 ## Usage Example
@@ -266,6 +275,14 @@ Check the **Traces** view in your Langfuse project after running the orchestrato
 
 Current result: **16/16 (100%)** routed to the expected domain.
 
+### Evaluator (Bonus)
+
+`src/evaluator.py` is an LLM-as-judge: given only the original question and the final answer (per the assignment brief — no access to the retrieved chunks), it scores the answer on three 1-10 dimensions — `relevance`, `completeness`, `accuracy` — using `.with_structured_output()` the same way the classifier does, plus a short rationale. Each dimension is written back as its own named score on that run's Langfuse trace via `Langfuse.create_score(trace_id=..., name=..., value=..., comment=...)` — the Score API.
+
+**Why this runs offline, not inside `orchestrator.route()`:** scoring every live answer would add a second LLM call's worth of latency and cost to every user-facing request. Instead, `python -m src.run_evaluation` runs after `run_test_queries.py`, reading the `(question, answer, trace_id)` already saved in `outputs/test_results.json` and scoring each one — the same shape a scheduled batch job would use against recent production traffic. Results are also saved to `outputs/evaluation_results.json`.
+
+Current averages: **relevance 9.9/10, completeness 9.0/10, accuracy 9.5/10** — the lower completeness scores cluster on the Tech domain (e.g. the phishing-report question), consistent with those knowledge-base answers being comparatively terse.
+
 ### Error handling
 
 `src/errors.py` defines the project's own exception types, kept separate from third-party exceptions (`openai.OpenAIError`, LangChain's parsing errors) so calling code can tell "our logic rejected this" apart from "the provider had a problem":
@@ -298,4 +315,4 @@ Current result: **16/16 (100%)** routed to the expected domain.
 - [x] Test query suite
 - [x] Langfuse tracing
 - [x] Technical decisions writeup
-- [ ] (Bonus) Evaluator agent with Langfuse Score API
+- [x] (Bonus) Evaluator agent with Langfuse Score API

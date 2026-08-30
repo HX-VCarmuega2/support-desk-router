@@ -1,0 +1,162 @@
+[
+  {
+    "id": 1,
+    "question": "How many weeks of paid parental leave do I get?",
+    "domain": "hr",
+    "trace_id": "d96f2354bcd4aa73443e2e18ed427c10",
+    "relevance": 10,
+    "completeness": 10,
+    "accuracy": 10,
+    "rationale": "The answer directly addresses the question about the number of weeks of paid parental leave, providing specific details for both birthing and non-birthing parents. It is clear, accurate, and consistent with the information typically provided in such contexts."
+  },
+  {
+    "id": 2,
+    "question": "What is the dress code policy?",
+    "domain": "hr",
+    "trace_id": "5464c70ab0e0d53be5d22f06ceb17921",
+    "relevance": 10,
+    "completeness": 9,
+    "accuracy": 10,
+    "rationale": "The answer directly addresses the question about the dress code policy, providing specific details about business-casual attire for office days and the lack of a formal dress code for remote work. It also mentions additional guidance for client-facing roles, which adds to the completeness. The information appears accurate and consistent."
+  },
+  {
+    "id": 3,
+    "question": "How do I report a workplace conduct concern?",
+    "domain": "hr",
+    "trace_id": "cf2196063d57576b18efae5c26dd4f6e",
+    "relevance": 10,
+    "completeness": 9,
+    "accuracy": 10,
+    "rationale": "The answer directly addresses the question by providing specific channels for reporting workplace conduct concerns, including the manager, HR business partner, and an anonymous hotline. It also includes relevant details about the review process and anti-retaliation policy, making it comprehensive and accurate."
+  },
+  {
+    "id": 4,
+    "question": "Does the company offer a wellness stipend?",
+    "domain": "hr",
+    "trace_id": "ba7c8c62e1bac84b52997db83159b0a3",
+    "relevance": 10,
+    "completeness": 10,
+    "accuracy": 10,
+    "rationale": "The answer directly addresses the question about the wellness stipend, providing specific details about the amount, eligible uses, and the reimbursement process, which makes it both complete and accurate."
+  },
+  {
+    "id": 5,
+    "question": "My VPN keeps disconnecting, what should I do?",
+    "domain": "tech",
+    "trace_id": "b6ab4cf710cc5dbe4d1976d4f2c4d43b",
+    "relevance": 9,
+    "completeness": 8,
+    "accuracy": 9,
+    "rationale": "The answer is relevant as it directly addresses the issue of VPN disconnections. It provides specific steps to troubleshoot the problem, including checking for inactivity and restarting the client. However, it could be more complete by mentioning other potential causes of disconnections, such as network settings or firewall issues."
+  },
+  {
+    "id": 6,
+    "question": "How do I report a phishing email?",
+    "domain": "tech",
+    "trace_id": "cad4f0385ac7aeaf89cca32e0f93756c",
+    "relevance": 9,
+    "completeness": 7,
+    "accuracy": 8,
+    "rationale": "The answer is relevant as it directly addresses how to report a phishing email. It is mostly complete but could include additional details such as specific email clients or alternative reporting methods. The accuracy is good, as it provides a clear and consistent method for reporting phishing emails."
+  },
+  {
+    "id": 7,
+    "question": "What is the laptop refresh cycle?",
+    "domain": "tech",
+    "trace_id": "08e810e6e111091d7a7afd7321289af3",
+    "relevance": 10,
+    "completeness": 9,
+    "accuracy": 9,
+    "rationale": "The answer directly addresses the question about the laptop refresh cycle, providing specific timeframes and conditions for different roles. It is accurate and consistent with typical IT policies, though it could include more detail about the review process for early refresh requests."
+  },
+  {
+    "id": 8,
+    "question": "How do I request access to the staging environment?",
+    "domain": "tech",
+    "trace_id": "6ddfe4ea776b5c2f42f707ddcf63d770",
+    "relevance": 10,
+    "completeness": 8,
+    "accuracy": 9,
+    "rationale": "The answer is highly relevant as it directly addresses the question about requesting access to the staging environment. It provides a clear method for making the request and mentions the approval process and typical timeframe, but could include more specifics about what information might be needed in the request."
+  },
+  {
+    "id": 9,
+    "question": "What is the reimbursement limit for meals during business travel?",
+    "domain": "finance",
+    "trace_id": "355b1ceec2726e82ab7a6870523e6b92",
+    "relevance": 10,
+    "completeness": 10,
+    "accuracy": 10,
+    "rationale": "The answer directly addresses the question about the reimbursement limit for meals during business travel, providing a specific dollar amount and mentioning that it should be itemized by meal, which adds clarity."
+  },
+  {
+    "id": 10,
+    "question": "How often are customers invoiced for their subscription?",
+    "domain": "finance",
+    "trace_id": "839614e8f643e3d30179251946e65bd8",
+    "relevance": 10,
+    "completeness": 10,
+    "accuracy": 10,
+    "rationale": "The answer directly addresses the question about invoicing frequency for subscriptions, providing clear details for both monthly and annual plans. It is specific and consistent with standard practices, ensuring accuracy."
+  },
+  {
+    "id": 11,
+    "question": "What is the monthly spending limit on a corporate card?",
+    "domain": "finance",
+    "trace_id": "94dbbc71546ce60079b7a2c0f149f9b4",
+    "relevance": 10,
+    "completeness": 10,
+    "accuracy": 10,
+    "rationale": "The answer directly addresses the question about the monthly spending limit on a corporate card, provides a specific figure, and is internally consistent without any vague or invented details."
+  },
+  {
+    "id": 12,
+    "question": "When are annual tax forms issued to employees?",
+    "domain": "finance",
+    "trace_id": "c212061eed7d3c3ee7983176e89992c8",
+    "relevance": 10,
+    "completeness": 9,
+    "accuracy": 9,
+    "rationale": "The answer directly addresses the question about when annual tax forms are issued, providing a specific date and mentioning the option for a physical copy. It is mostly complete, but could specify which forms are included. The information appears accurate and consistent."
+  },
+  {
+    "id": 13,
+    "question": "How do I set up direct deposit?",
+    "domain": "finance",
+    "trace_id": "20ea5571c7315ade3a45294c4fd37e60",
+    "relevance": 10,
+    "completeness": 8,
+    "accuracy": 9,
+    "rationale": "The answer is highly relevant as it directly addresses the question about setting up direct deposit. It provides specific details about using the payroll portal and the timing for changes, but could include more information about where to find the payroll portal or any additional steps involved."
+  },
+  {
+    "id": 14,
+    "question": "What is the annual merit increase process?",
+    "domain": "hr",
+    "trace_id": "06c98363d65a374ff6cbdc62d422eeb5",
+    "relevance": 10,
+    "completeness": 9,
+    "accuracy": 9,
+    "rationale": "The answer directly addresses the question about the annual merit increase process, providing specific details about performance ratings, compensation bands, and timing. It is mostly complete but could include more about how performance ratings are determined or the criteria for the compensation bands. The information provided is accurate and consistent with typical processes."
+  },
+  {
+    "id": 15,
+    "question": "I lost my corporate card, what do I do?",
+    "domain": "finance",
+    "trace_id": "37878f79fcd3a98f3fc1c67428a52cd1",
+    "relevance": 10,
+    "completeness": 9,
+    "accuracy": 10,
+    "rationale": "The answer directly addresses the question about what to do after losing a corporate card, providing clear steps to take. It covers the necessary actions in detail, such as reporting to the card issuer and notifying Finance, which makes it complete. The information provided is accurate and consistent with standard procedures for lost cards."
+  },
+  {
+    "id": 16,
+    "question": "I lost my laptop, what do I do?",
+    "domain": "tech",
+    "trace_id": "50f708c6435363ff1c24930ed9c33594",
+    "relevance": 10,
+    "completeness": 9,
+    "accuracy": 10,
+    "rationale": "The answer directly addresses the question about what to do if a laptop is lost, providing specific actions to take. It covers both reporting to IT and the need for a police report if the loss is outside a company facility, making it comprehensive. The information provided is accurate and consistent with standard procedures."
+  }
+]
