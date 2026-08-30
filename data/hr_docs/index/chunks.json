@@ -1,0 +1,380 @@
+[
+  {
+    "id": 1,
+    "section": "ONBOARDING",
+    "question": "What does a new employee need to complete before their first day?",
+    "text": "New hires must complete the digital onboarding packet in Workday, which includes tax withholding forms, direct deposit details, emergency contact information, and acknowledgment of the employee handbook. IT provisions accounts once the packet is submitted, so completing it at least 3 business days before the start date avoids delays on day one.",
+    "content": "What does a new employee need to complete before their first day?\n\nNew hires must complete the digital onboarding packet in Workday, which includes tax withholding forms, direct deposit details, emergency contact information, and acknowledgment of the employee handbook. IT provisions accounts once the packet is submitted, so completing it at least 3 business days before the start date avoids delays on day one."
+  },
+  {
+    "id": 2,
+    "section": "ONBOARDING",
+    "question": "How is company equipment assigned to new hires?",
+    "text": "The hiring manager submits an equipment request through the IT portal at least one week before the employee's start date, specifying laptop type and any role-specific peripherals. Equipment ships to the employee's home for remote hires or is staged at the desk for office-based hires.",
+    "content": "How is company equipment assigned to new hires?\n\nThe hiring manager submits an equipment request through the IT portal at least one week before the employee's start date, specifying laptop type and any role-specific peripherals. Equipment ships to the employee's home for remote hires or is staged at the desk for office-based hires."
+  },
+  {
+    "id": 3,
+    "section": "ONBOARDING",
+    "question": "What is included in the first-week onboarding schedule?",
+    "text": "The first week includes a welcome session with HR, benefits enrollment walkthrough, a meeting with the assigned onboarding buddy, department-specific training, and an introduction to the tools used by the employee's team. Managers are expected to schedule a 1:1 with the new hire by day three.",
+    "content": "What is included in the first-week onboarding schedule?\n\nThe first week includes a welcome session with HR, benefits enrollment walkthrough, a meeting with the assigned onboarding buddy, department-specific training, and an introduction to the tools used by the employee's team. Managers are expected to schedule a 1:1 with the new hire by day three."
+  },
+  {
+    "id": 4,
+    "section": "ONBOARDING",
+    "question": "Who assigns a new hire's onboarding buddy?",
+    "text": "The hiring manager assigns an onboarding buddy from within the new hire's team, typically someone who has been at Meridian Cloud for at least six months. The buddy is available for informal questions during the first 30 days and is separate from the employee's formal manager.",
+    "content": "Who assigns a new hire's onboarding buddy?\n\nThe hiring manager assigns an onboarding buddy from within the new hire's team, typically someone who has been at Meridian Cloud for at least six months. The buddy is available for informal questions during the first 30 days and is separate from the employee's formal manager."
+  },
+  {
+    "id": 5,
+    "section": "ONBOARDING",
+    "question": "How long is the probation period for new employees?",
+    "text": "All new employees complete a 90-day introductory period. During this time, managers conduct a check-in at 30 and 60 days. The introductory period does not affect benefits eligibility, which begins on the standard schedule regardless of probation status.",
+    "content": "How long is the probation period for new employees?\n\nAll new employees complete a 90-day introductory period. During this time, managers conduct a check-in at 30 and 60 days. The introductory period does not affect benefits eligibility, which begins on the standard schedule regardless of probation status."
+  },
+  {
+    "id": 6,
+    "section": "ONBOARDING",
+    "question": "What documents must be submitted during onboarding?",
+    "text": "Employees must submit valid government-issued identification for I-9 verification, signed offer letter, tax withholding forms (W-4 or local equivalent), and direct deposit banking details. Remote employees complete I-9 verification through a scheduled video session with a designated HR representative.\n\n==================================================",
+    "content": "What documents must be submitted during onboarding?\n\nEmployees must submit valid government-issued identification for I-9 verification, signed offer letter, tax withholding forms (W-4 or local equivalent), and direct deposit banking details. Remote employees complete I-9 verification through a scheduled video session with a designated HR representative.\n\n=================================================="
+  },
+  {
+    "id": 7,
+    "section": "BENEFITS AND INSURANCE",
+    "question": "What health insurance plans does Meridian Cloud offer?",
+    "text": "Meridian Cloud offers three medical plan tiers: a high-deductible plan with a company-funded HSA contribution, a standard PPO plan, and a premium PPO plan with lower out-of-pocket costs. All three tiers are available to full-time employees working 30 or more hours per week.",
+    "content": "What health insurance plans does Meridian Cloud offer?\n\nMeridian Cloud offers three medical plan tiers: a high-deductible plan with a company-funded HSA contribution, a standard PPO plan, and a premium PPO plan with lower out-of-pocket costs. All three tiers are available to full-time employees working 30 or more hours per week."
+  },
+  {
+    "id": 8,
+    "section": "BENEFITS AND INSURANCE",
+    "question": "When does health insurance coverage begin for new employees?",
+    "text": "Health insurance coverage begins on the first day of the month following the employee's start date. Employees who start on the first of the month are covered immediately. Enrollment elections must be submitted within 30 days of the start date, or the employee must wait for the next open enrollment period.",
+    "content": "When does health insurance coverage begin for new employees?\n\nHealth insurance coverage begins on the first day of the month following the employee's start date. Employees who start on the first of the month are covered immediately. Enrollment elections must be submitted within 30 days of the start date, or the employee must wait for the next open enrollment period."
+  },
+  {
+    "id": 9,
+    "section": "BENEFITS AND INSURANCE",
+    "question": "Does Meridian Cloud offer dental and vision coverage?",
+    "text": "Yes, dental and vision coverage are offered as separate opt-in plans alongside medical coverage, both fully subsidized at the employee-only tier. Coverage for dependents is available at an additional cost, deducted pre-tax from payroll.",
+    "content": "Does Meridian Cloud offer dental and vision coverage?\n\nYes, dental and vision coverage are offered as separate opt-in plans alongside medical coverage, both fully subsidized at the employee-only tier. Coverage for dependents is available at an additional cost, deducted pre-tax from payroll."
+  },
+  {
+    "id": 10,
+    "section": "BENEFITS AND INSURANCE",
+    "question": "What is the employer contribution to the 401(k) retirement plan?",
+    "text": "Meridian Cloud matches 100% of employee 401(k) contributions up to 4% of base salary, with immediate vesting. Employees become eligible to enroll after 60 days of employment and can adjust their contribution percentage at any time through the payroll portal.",
+    "content": "What is the employer contribution to the 401(k) retirement plan?\n\nMeridian Cloud matches 100% of employee 401(k) contributions up to 4% of base salary, with immediate vesting. Employees become eligible to enroll after 60 days of employment and can adjust their contribution percentage at any time through the payroll portal."
+  },
+  {
+    "id": 11,
+    "section": "BENEFITS AND INSURANCE",
+    "question": "Are employees eligible for a wellness stipend?",
+    "text": "Full-time employees receive a $50 monthly wellness stipend that can be applied toward gym memberships, fitness classes, or mental health app subscriptions. The stipend is submitted as a reimbursement with proof of payment and is processed alongside the monthly expense cycle.",
+    "content": "Are employees eligible for a wellness stipend?\n\nFull-time employees receive a $50 monthly wellness stipend that can be applied toward gym memberships, fitness classes, or mental health app subscriptions. The stipend is submitted as a reimbursement with proof of payment and is processed alongside the monthly expense cycle."
+  },
+  {
+    "id": 12,
+    "section": "BENEFITS AND INSURANCE",
+    "question": "How can an employee add a dependent to their health plan?",
+    "text": "Dependents can be added during open enrollment or within 30 days of a qualifying life event such as marriage, birth, or loss of other coverage. The employee submits the change through the benefits portal along with supporting documentation, such as a birth certificate or marriage license.\n\n==================================================",
+    "content": "How can an employee add a dependent to their health plan?\n\nDependents can be added during open enrollment or within 30 days of a qualifying life event such as marriage, birth, or loss of other coverage. The employee submits the change through the benefits portal along with supporting documentation, such as a birth certificate or marriage license.\n\n=================================================="
+  },
+  {
+    "id": 13,
+    "section": "TIME OFF AND LEAVE",
+    "question": "How many paid time off (PTO) days do full-time employees receive?",
+    "text": "Full-time employees accrue 20 PTO days per year during their first three years, increasing to 25 days after three years of tenure. PTO accrues monthly rather than being granted as a lump sum at the start of the year.",
+    "content": "How many paid time off (PTO) days do full-time employees receive?\n\nFull-time employees accrue 20 PTO days per year during their first three years, increasing to 25 days after three years of tenure. PTO accrues monthly rather than being granted as a lump sum at the start of the year."
+  },
+  {
+    "id": 14,
+    "section": "TIME OFF AND LEAVE",
+    "question": "How does an employee request time off?",
+    "text": "Employees submit PTO requests through Workday, selecting the dates and providing a reason if desired. The direct manager receives a notification and must approve or deny the request within 3 business days. Requests longer than 5 consecutive days should be submitted at least 2 weeks in advance.",
+    "content": "How does an employee request time off?\n\nEmployees submit PTO requests through Workday, selecting the dates and providing a reason if desired. The direct manager receives a notification and must approve or deny the request within 3 business days. Requests longer than 5 consecutive days should be submitted at least 2 weeks in advance."
+  },
+  {
+    "id": 15,
+    "section": "TIME OFF AND LEAVE",
+    "question": "Does unused PTO roll over to the next year?",
+    "text": "Employees may roll over up to 5 unused PTO days into the following calendar year. Any balance above 5 days that remains unused by December 31 is forfeited, except where state law requires payout, in which case local policy overrides the standard rule.",
+    "content": "Does unused PTO roll over to the next year?\n\nEmployees may roll over up to 5 unused PTO days into the following calendar year. Any balance above 5 days that remains unused by December 31 is forfeited, except where state law requires payout, in which case local policy overrides the standard rule."
+  },
+  {
+    "id": 16,
+    "section": "TIME OFF AND LEAVE",
+    "question": "What is the process for requesting sick leave?",
+    "text": "Sick leave is tracked separately from PTO and does not require advance notice. Employees notify their manager as soon as reasonably possible, ideally before the start of the workday. Absences of 3 or more consecutive sick days require a note from a healthcare provider.",
+    "content": "What is the process for requesting sick leave?\n\nSick leave is tracked separately from PTO and does not require advance notice. Employees notify their manager as soon as reasonably possible, ideally before the start of the workday. Absences of 3 or more consecutive sick days require a note from a healthcare provider."
+  },
+  {
+    "id": 17,
+    "section": "TIME OFF AND LEAVE",
+    "question": "How many paid holidays does Meridian Cloud observe?",
+    "text": "Meridian Cloud observes 11 paid holidays per year, published annually in the company holiday calendar. Employees in regions with different public holidays may substitute up to 2 company holidays for locally observed holidays, subject to manager approval.",
+    "content": "How many paid holidays does Meridian Cloud observe?\n\nMeridian Cloud observes 11 paid holidays per year, published annually in the company holiday calendar. Employees in regions with different public holidays may substitute up to 2 company holidays for locally observed holidays, subject to manager approval."
+  },
+  {
+    "id": 18,
+    "section": "TIME OFF AND LEAVE",
+    "question": "Can an employee take unpaid leave beyond their PTO balance?",
+    "text": "Unpaid personal leave may be granted for up to 4 weeks with manager and HR approval, typically for personal circumstances not covered by other leave types. Requests are evaluated case by case and do not guarantee job protection beyond what is legally required.\n\n==================================================",
+    "content": "Can an employee take unpaid leave beyond their PTO balance?\n\nUnpaid personal leave may be granted for up to 4 weeks with manager and HR approval, typically for personal circumstances not covered by other leave types. Requests are evaluated case by case and do not guarantee job protection beyond what is legally required.\n\n=================================================="
+  },
+  {
+    "id": 19,
+    "section": "PARENTAL AND FAMILY LEAVE",
+    "question": "How many weeks of paid parental leave are offered?",
+    "text": "Meridian Cloud offers 16 weeks of paid parental leave for the birthing parent and 10 weeks for the non-birthing parent, applicable to birth, adoption, or foster placement. Leave can be taken continuously or split into two blocks within the first 12 months.",
+    "content": "How many weeks of paid parental leave are offered?\n\nMeridian Cloud offers 16 weeks of paid parental leave for the birthing parent and 10 weeks for the non-birthing parent, applicable to birth, adoption, or foster placement. Leave can be taken continuously or split into two blocks within the first 12 months."
+  },
+  {
+    "id": 20,
+    "section": "PARENTAL AND FAMILY LEAVE",
+    "question": "Is parental leave available to non-birthing parents?",
+    "text": "Yes, non-birthing parents, including adoptive and foster parents, are eligible for 10 weeks of paid parental leave regardless of gender. Eligibility requires at least 6 months of continuous employment prior to the leave start date.",
+    "content": "Is parental leave available to non-birthing parents?\n\nYes, non-birthing parents, including adoptive and foster parents, are eligible for 10 weeks of paid parental leave regardless of gender. Eligibility requires at least 6 months of continuous employment prior to the leave start date."
+  },
+  {
+    "id": 21,
+    "section": "PARENTAL AND FAMILY LEAVE",
+    "question": "How far in advance must parental leave be requested?",
+    "text": "Employees should notify HR and their manager at least 30 days before the expected leave start date whenever possible. For unplanned events such as premature birth, employees should notify HR as soon as practical, and the standard notice requirement is waived.",
+    "content": "How far in advance must parental leave be requested?\n\nEmployees should notify HR and their manager at least 30 days before the expected leave start date whenever possible. For unplanned events such as premature birth, employees should notify HR as soon as practical, and the standard notice requirement is waived."
+  },
+  {
+    "id": 22,
+    "section": "PARENTAL AND FAMILY LEAVE",
+    "question": "Does Meridian Cloud offer bereavement leave?",
+    "text": "Employees receive 5 paid bereavement days for the loss of an immediate family member and 2 paid days for extended family. Additional unpaid leave may be arranged with manager approval for circumstances requiring more time.",
+    "content": "Does Meridian Cloud offer bereavement leave?\n\nEmployees receive 5 paid bereavement days for the loss of an immediate family member and 2 paid days for extended family. Additional unpaid leave may be arranged with manager approval for circumstances requiring more time."
+  },
+  {
+    "id": 23,
+    "section": "PARENTAL AND FAMILY LEAVE",
+    "question": "What is the policy on caring for a sick family member?",
+    "text": "Employees may use up to 10 days per year of paid family caregiver leave to care for an immediate family member with a serious health condition, separate from their personal PTO balance. Documentation from a healthcare provider is required for leave exceeding 3 consecutive days.\n\n==================================================",
+    "content": "What is the policy on caring for a sick family member?\n\nEmployees may use up to 10 days per year of paid family caregiver leave to care for an immediate family member with a serious health condition, separate from their personal PTO balance. Documentation from a healthcare provider is required for leave exceeding 3 consecutive days.\n\n=================================================="
+  },
+  {
+    "id": 24,
+    "section": "PAYROLL AND COMPENSATION",
+    "question": "How often are salaries reviewed?",
+    "text": "Compensation is formally reviewed once per year during the annual performance cycle in Q1. Off-cycle adjustments may occur for promotions, market corrections, or retention concerns, but are not guaranteed outside the annual cycle.",
+    "content": "How often are salaries reviewed?\n\nCompensation is formally reviewed once per year during the annual performance cycle in Q1. Off-cycle adjustments may occur for promotions, market corrections, or retention concerns, but are not guaranteed outside the annual cycle."
+  },
+  {
+    "id": 25,
+    "section": "PAYROLL AND COMPENSATION",
+    "question": "What determines eligibility for an annual merit increase?",
+    "text": "Merit increases are based on performance rating, position within the compensation band for the role, and overall department budget for the cycle. Employees who joined within the last 3 months of the review period are typically excluded from that cycle and included in the next.",
+    "content": "What determines eligibility for an annual merit increase?\n\nMerit increases are based on performance rating, position within the compensation band for the role, and overall department budget for the cycle. Employees who joined within the last 3 months of the review period are typically excluded from that cycle and included in the next."
+  },
+  {
+    "id": 26,
+    "section": "PAYROLL AND COMPENSATION",
+    "question": "How are compensation bands determined?",
+    "text": "Compensation bands are set using third-party market data benchmarked against companies of similar size and industry, adjusted for the employee's geographic location. Bands are reviewed annually and are available to employees through the People team upon request.",
+    "content": "How are compensation bands determined?\n\nCompensation bands are set using third-party market data benchmarked against companies of similar size and industry, adjusted for the employee's geographic location. Bands are reviewed annually and are available to employees through the People team upon request."
+  },
+  {
+    "id": 27,
+    "section": "PAYROLL AND COMPENSATION",
+    "question": "Who can an employee contact with a pay discrepancy?",
+    "text": "Employees should report pay discrepancies to the Payroll team through the HR help desk within 5 business days of noticing the issue. Corrections identified before the payroll cutoff are reflected in the same pay cycle; later corrections are processed in the following cycle.",
+    "content": "Who can an employee contact with a pay discrepancy?\n\nEmployees should report pay discrepancies to the Payroll team through the HR help desk within 5 business days of noticing the issue. Corrections identified before the payroll cutoff are reflected in the same pay cycle; later corrections are processed in the following cycle."
+  },
+  {
+    "id": 28,
+    "section": "PAYROLL AND COMPENSATION",
+    "question": "Are referral bonuses offered for successful hires?",
+    "text": "Employees receive a $1,500 referral bonus for standard roles and $3,000 for senior or specialized roles, paid after the referred candidate completes 90 days of employment. Referral bonuses are processed through Payroll and are subject to standard income tax withholding.\n\n==================================================",
+    "content": "Are referral bonuses offered for successful hires?\n\nEmployees receive a $1,500 referral bonus for standard roles and $3,000 for senior or specialized roles, paid after the referred candidate completes 90 days of employment. Referral bonuses are processed through Payroll and are subject to standard income tax withholding.\n\n=================================================="
+  },
+  {
+    "id": 29,
+    "section": "PERFORMANCE AND CAREER GROWTH",
+    "question": "How often are performance reviews conducted?",
+    "text": "Formal performance reviews occur twice a year, in Q1 and Q3, combining self-assessment, manager assessment, and peer feedback. Informal check-ins between employee and manager are expected on a monthly basis outside of the formal review cycle.",
+    "content": "How often are performance reviews conducted?\n\nFormal performance reviews occur twice a year, in Q1 and Q3, combining self-assessment, manager assessment, and peer feedback. Informal check-ins between employee and manager are expected on a monthly basis outside of the formal review cycle."
+  },
+  {
+    "id": 30,
+    "section": "PERFORMANCE AND CAREER GROWTH",
+    "question": "What is the format of the performance review process?",
+    "text": "The review process begins with a self-assessment submitted by the employee, followed by manager evaluation and calibration across the department to ensure consistency. Final ratings and feedback are shared in a 1:1 meeting between the employee and manager.",
+    "content": "What is the format of the performance review process?\n\nThe review process begins with a self-assessment submitted by the employee, followed by manager evaluation and calibration across the department to ensure consistency. Final ratings and feedback are shared in a 1:1 meeting between the employee and manager."
+  },
+  {
+    "id": 31,
+    "section": "PERFORMANCE AND CAREER GROWTH",
+    "question": "How does an employee request an internal transfer?",
+    "text": "Employees eligible for internal transfer must have been in their current role for at least 12 months and in good performance standing. The employee applies through the internal jobs board, and the current manager is notified once a formal offer is extended, not before.",
+    "content": "How does an employee request an internal transfer?\n\nEmployees eligible for internal transfer must have been in their current role for at least 12 months and in good performance standing. The employee applies through the internal jobs board, and the current manager is notified once a formal offer is extended, not before."
+  },
+  {
+    "id": 32,
+    "section": "PERFORMANCE AND CAREER GROWTH",
+    "question": "Does Meridian Cloud reimburse for professional development courses?",
+    "text": "Employees have an annual professional development budget of $1,500, which can be used for courses, certifications, or conference attendance relevant to their role. Reimbursement requires manager pre-approval and submission of a certificate of completion.",
+    "content": "Does Meridian Cloud reimburse for professional development courses?\n\nEmployees have an annual professional development budget of $1,500, which can be used for courses, certifications, or conference attendance relevant to their role. Reimbursement requires manager pre-approval and submission of a certificate of completion."
+  },
+  {
+    "id": 33,
+    "section": "PERFORMANCE AND CAREER GROWTH",
+    "question": "What is the process for promotion consideration?",
+    "text": "Promotions are proposed by the manager during the performance review cycle and require calibration approval from the department head. Employees can also self-nominate for promotion consideration, which is discussed with their manager ahead of the formal cycle.",
+    "content": "What is the process for promotion consideration?\n\nPromotions are proposed by the manager during the performance review cycle and require calibration approval from the department head. Employees can also self-nominate for promotion consideration, which is discussed with their manager ahead of the formal cycle."
+  },
+  {
+    "id": 34,
+    "section": "PERFORMANCE AND CAREER GROWTH",
+    "question": "How is underperformance addressed?",
+    "text": "Underperformance is addressed through a Performance Improvement Plan (PIP), which sets specific goals and a 30 to 60 day timeline, developed jointly by the manager and HR. Progress is reviewed at regular checkpoints throughout the PIP period.\n\n==================================================",
+    "content": "How is underperformance addressed?\n\nUnderperformance is addressed through a Performance Improvement Plan (PIP), which sets specific goals and a 30 to 60 day timeline, developed jointly by the manager and HR. Progress is reviewed at regular checkpoints throughout the PIP period.\n\n=================================================="
+  },
+  {
+    "id": 35,
+    "section": "REMOTE WORK AND EQUIPMENT",
+    "question": "Is remote work permitted for all roles?",
+    "text": "Most roles at Meridian Cloud are eligible for fully remote or hybrid work, with the exception of roles requiring on-site presence such as facilities or certain lab-based engineering positions. Eligibility is defined at the job posting level and confirmed during the offer stage.",
+    "content": "Is remote work permitted for all roles?\n\nMost roles at Meridian Cloud are eligible for fully remote or hybrid work, with the exception of roles requiring on-site presence such as facilities or certain lab-based engineering positions. Eligibility is defined at the job posting level and confirmed during the offer stage."
+  },
+  {
+    "id": 36,
+    "section": "REMOTE WORK AND EQUIPMENT",
+    "question": "What is the hybrid work schedule policy?",
+    "text": "Hybrid employees are expected to work from a company office at least 2 days per week, coordinated with their team. Specific in-office days are set at the team level rather than mandated company-wide, to allow flexibility around collaboration needs.",
+    "content": "What is the hybrid work schedule policy?\n\nHybrid employees are expected to work from a company office at least 2 days per week, coordinated with their team. Specific in-office days are set at the team level rather than mandated company-wide, to allow flexibility around collaboration needs."
+  },
+  {
+    "id": 37,
+    "section": "REMOTE WORK AND EQUIPMENT",
+    "question": "Does Meridian Cloud provide a home office stipend?",
+    "text": "New remote employees receive a one-time $500 home office setup stipend, plus an ongoing $30 monthly stipend for internet and utilities. The one-time stipend is processed through expense reimbursement within the first 60 days of employment.",
+    "content": "Does Meridian Cloud provide a home office stipend?\n\nNew remote employees receive a one-time $500 home office setup stipend, plus an ongoing $30 monthly stipend for internet and utilities. The one-time stipend is processed through expense reimbursement within the first 60 days of employment."
+  },
+  {
+    "id": 38,
+    "section": "REMOTE WORK AND EQUIPMENT",
+    "question": "Can an employee work from another country temporarily?",
+    "text": "Employees may work from another country for up to 30 days per year with manager and HR approval, subject to tax and legal review for that jurisdiction. Longer-term international work requires a formal relocation or International remote work agreement.",
+    "content": "Can an employee work from another country temporarily?\n\nEmployees may work from another country for up to 30 days per year with manager and HR approval, subject to tax and legal review for that jurisdiction. Longer-term international work requires a formal relocation or International remote work agreement."
+  },
+  {
+    "id": 39,
+    "section": "REMOTE WORK AND EQUIPMENT",
+    "question": "What equipment is provided to remote employees?",
+    "text": "Remote employees receive a company laptop, external monitor, keyboard, mouse, and headset, shipped to their registered home address. Additional ergonomic equipment, such as a chair or standing desk, can be requested through the facilities team with manager approval.\n\n==================================================",
+    "content": "What equipment is provided to remote employees?\n\nRemote employees receive a company laptop, external monitor, keyboard, mouse, and headset, shipped to their registered home address. Additional ergonomic equipment, such as a chair or standing desk, can be requested through the facilities team with manager approval.\n\n=================================================="
+  },
+  {
+    "id": 40,
+    "section": "WORKPLACE POLICIES AND CONDUCT",
+    "question": "What is the company's anti-harassment policy?",
+    "text": "Meridian Cloud maintains a zero-tolerance policy for harassment or discrimination based on protected characteristics. All employees complete mandatory anti-harassment training annually, and violations are investigated by HR regardless of the reporter's seniority or role.",
+    "content": "What is the company's anti-harassment policy?\n\nMeridian Cloud maintains a zero-tolerance policy for harassment or discrimination based on protected characteristics. All employees complete mandatory anti-harassment training annually, and violations are investigated by HR regardless of the reporter's seniority or role."
+  },
+  {
+    "id": 41,
+    "section": "WORKPLACE POLICIES AND CONDUCT",
+    "question": "How does an employee report a workplace conduct concern?",
+    "text": "Concerns can be reported to a manager, HR business partner, or through the anonymous ethics hotline available on the intranet. Reports made through the hotline are reviewed by HR within 3 business days, and retaliation against a reporter is itself a violation of policy.",
+    "content": "How does an employee report a workplace conduct concern?\n\nConcerns can be reported to a manager, HR business partner, or through the anonymous ethics hotline available on the intranet. Reports made through the hotline are reviewed by HR within 3 business days, and retaliation against a reporter is itself a violation of policy."
+  },
+  {
+    "id": 42,
+    "section": "WORKPLACE POLICIES AND CONDUCT",
+    "question": "What is the dress code policy?",
+    "text": "Meridian Cloud follows a business-casual dress code for office days, with no formal dress code for remote work days. Client-facing roles may have additional guidance for meetings, communicated by their manager or department head.",
+    "content": "What is the dress code policy?\n\nMeridian Cloud follows a business-casual dress code for office days, with no formal dress code for remote work days. Client-facing roles may have additional guidance for meetings, communicated by their manager or department head."
+  },
+  {
+    "id": 43,
+    "section": "WORKPLACE POLICIES AND CONDUCT",
+    "question": "Does Meridian Cloud allow outside employment (moonlighting)?",
+    "text": "Employees may hold outside employment as long as it does not create a conflict of interest, compete with Meridian Cloud's business, or interfere with job performance. Outside employment involving a competitor or client must be disclosed to HR in advance.",
+    "content": "Does Meridian Cloud allow outside employment (moonlighting)?\n\nEmployees may hold outside employment as long as it does not create a conflict of interest, compete with Meridian Cloud's business, or interfere with job performance. Outside employment involving a competitor or client must be disclosed to HR in advance."
+  },
+  {
+    "id": 44,
+    "section": "WORKPLACE POLICIES AND CONDUCT",
+    "question": "What is the policy on workplace conflicts of interest?",
+    "text": "Employees must disclose any financial or personal relationship that could reasonably be seen as influencing their business decisions, including relationships with vendors, competitors, or direct reports. Disclosures are reviewed by HR and managed through documented mitigation plans when needed.",
+    "content": "What is the policy on workplace conflicts of interest?\n\nEmployees must disclose any financial or personal relationship that could reasonably be seen as influencing their business decisions, including relationships with vendors, competitors, or direct reports. Disclosures are reviewed by HR and managed through documented mitigation plans when needed."
+  },
+  {
+    "id": 45,
+    "section": "WORKPLACE POLICIES AND CONDUCT",
+    "question": "How are confidentiality agreements enforced?",
+    "text": "All employees sign a confidentiality and IP assignment agreement as a condition of employment, covering proprietary code, customer data, and internal business information. Violations are treated as serious conduct issues and may result in termination and legal action depending on severity.\n\n==================================================",
+    "content": "How are confidentiality agreements enforced?\n\nAll employees sign a confidentiality and IP assignment agreement as a condition of employment, covering proprietary code, customer data, and internal business information. Violations are treated as serious conduct issues and may result in termination and legal action depending on severity.\n\n=================================================="
+  },
+  {
+    "id": 46,
+    "section": "OFFBOARDING",
+    "question": "What is the standard notice period for resignation?",
+    "text": "Employees are asked to provide at least 2 weeks' written notice of resignation, submitted to their manager and HR. Roles with significant handoff requirements, such as engineering leadership, are encouraged to provide additional notice where possible, though it is not mandatory.",
+    "content": "What is the standard notice period for resignation?\n\nEmployees are asked to provide at least 2 weeks' written notice of resignation, submitted to their manager and HR. Roles with significant handoff requirements, such as engineering leadership, are encouraged to provide additional notice where possible, though it is not mandatory."
+  },
+  {
+    "id": 47,
+    "section": "OFFBOARDING",
+    "question": "What happens to unused PTO when an employee leaves?",
+    "text": "Unused accrued PTO is paid out in the final paycheck in states or regions where payout is legally required. Where not legally required, Meridian Cloud follows a company-wide policy of paying out up to 10 unused days regardless of location.",
+    "content": "What happens to unused PTO when an employee leaves?\n\nUnused accrued PTO is paid out in the final paycheck in states or regions where payout is legally required. Where not legally required, Meridian Cloud follows a company-wide policy of paying out up to 10 unused days regardless of location."
+  },
+  {
+    "id": 48,
+    "section": "OFFBOARDING",
+    "question": "How is company equipment returned upon departure?",
+    "text": "Departing employees receive a prepaid shipping label to return their laptop and any other company-owned equipment within 10 business days of their last day. Equipment not returned within 30 days may result in a deduction from the final paycheck, where legally permitted.",
+    "content": "How is company equipment returned upon departure?\n\nDeparting employees receive a prepaid shipping label to return their laptop and any other company-owned equipment within 10 business days of their last day. Equipment not returned within 30 days may result in a deduction from the final paycheck, where legally permitted."
+  },
+  {
+    "id": 49,
+    "section": "OFFBOARDING",
+    "question": "Is COBRA continuation coverage offered after termination?",
+    "text": "Employees who lose health coverage due to termination are eligible for COBRA continuation coverage for up to 18 months, at the employee's full cost plus an administrative fee. Enrollment information is sent automatically within 14 days of the coverage end date.",
+    "content": "Is COBRA continuation coverage offered after termination?\n\nEmployees who lose health coverage due to termination are eligible for COBRA continuation coverage for up to 18 months, at the employee's full cost plus an administrative fee. Enrollment information is sent automatically within 14 days of the coverage end date."
+  },
+  {
+    "id": 50,
+    "section": "OFFBOARDING",
+    "question": "What is included in an exit interview?",
+    "text": "HR conducts a voluntary exit interview covering reasons for departure, feedback on management and team dynamics, and overall employee experience. Feedback is aggregated anonymously and shared with leadership as part of quarterly retention reporting, not attributed to individual departing employees.",
+    "content": "What is included in an exit interview?\n\nHR conducts a voluntary exit interview covering reasons for departure, feedback on management and team dynamics, and overall employee experience. Feedback is aggregated anonymously and shared with leadership as part of quarterly retention reporting, not attributed to individual departing employees."
+  },
+  {
+    "id": 51,
+    "section": "OFFBOARDING",
+    "question": "How long does final paycheck processing take after departure?",
+    "text": "Final paychecks, including any PTO payout, are issued on the next regular payroll date or sooner if required by local law. Employees can access their final pay stub through the payroll portal for up to 3 years after departure.\n\n==================================================",
+    "content": "How long does final paycheck processing take after departure?\n\nFinal paychecks, including any PTO payout, are issued on the next regular payroll date or sooner if required by local law. Employees can access their final pay stub through the payroll portal for up to 3 years after departure.\n\n=================================================="
+  },
+  {
+    "id": 52,
+    "section": "ADDITIONAL POLICIES",
+    "question": "Does Meridian Cloud support a four-day work week trial?",
+    "text": "Select departments have participated in a four-day work week pilot with no reduction in pay, evaluated based on maintained productivity metrics. The pilot is opt-in at the department level and is not yet a company-wide policy.",
+    "content": "Does Meridian Cloud support a four-day work week trial?\n\nSelect departments have participated in a four-day work week pilot with no reduction in pay, evaluated based on maintained productivity metrics. The pilot is opt-in at the department level and is not yet a company-wide policy."
+  },
+  {
+    "id": 53,
+    "section": "ADDITIONAL POLICIES",
+    "question": "What identity documents are required for I-9/tax verification?",
+    "text": "Employees must present acceptable identity and employment authorization documents, such as a passport or a combination of a driver's license and Social Security card, within 3 business days of their start date, per federal verification requirements.",
+    "content": "What identity documents are required for I-9/tax verification?\n\nEmployees must present acceptable identity and employment authorization documents, such as a passport or a combination of a driver's license and Social Security card, within 3 business days of their start date, per federal verification requirements."
+  },
+  {
+    "id": 54,
+    "section": "ADDITIONAL POLICIES",
+    "question": "How does an employee update their name or address on file?",
+    "text": "Employees can update their legal name or home address directly in Workday under Personal Information, which automatically syncs to payroll and benefits systems. Legal name changes require supporting documentation, such as a marriage certificate or court order, uploaded to the request.",
+    "content": "How does an employee update their name or address on file?\n\nEmployees can update their legal name or home address directly in Workday under Personal Information, which automatically syncs to payroll and benefits systems. Legal name changes require supporting documentation, such as a marriage certificate or court order, uploaded to the request."
+  }
+]

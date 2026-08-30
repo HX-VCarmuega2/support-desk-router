@@ -43,7 +43,7 @@ support-desk-router/
 - [x] Project scaffold
 - [x] Dependencies and environment setup
 - [x] Domain knowledge bases (HR, Tech, Finance)
-- [ ] Vector stores per domain
+- [x] Vector stores per domain
 - [ ] HR RAG agent
 - [ ] Tech and Finance RAG agents
 - [ ] Orchestrator with conditional routing (LangGraph)
@@ -63,6 +63,34 @@ All three domains describe the same fictional company, **Meridian Cloud**, a mid
 | HR      | `data/hr_docs/hr_faq.md`             |          54 |
 | Tech/IT | `data/tech_docs/tech_faq.md`         |          54 |
 | Finance | `data/finance_docs/finance_faq.md`   |          54 |
+
+## Vector Stores
+
+Each domain has its own FAISS index — HR, Tech, and Finance are never mixed into a shared index. This is what makes retrieval domain-aware: a question routed to the HR agent can only ever retrieve HR chunks, even if a Finance chunk happens to be semantically close.
+
+Build (or rebuild, after editing a knowledge base) all three indices:
+
+```bash
+python -m src.vector_store
+```
+
+This pipeline, per domain:
+
+1. Loads `data/<domain>_docs/<domain>_faq.md`
+2. Splits it into FAQ-aware chunks (one chunk per question/answer pair)
+3. Generates embeddings with `text-embedding-3-small`
+4. Normalizes the vectors and builds a `faiss.IndexFlatIP` index (inner product on normalized vectors = cosine similarity)
+5. Saves the index and chunk metadata under `data/<domain>_docs/index/`
+
+Generated files (committed to the repo so the project runs without rebuilding):
+
+```text
+data/hr_docs/index/{faiss.index, chunks.json}
+data/tech_docs/index/{faiss.index, chunks.json}
+data/finance_docs/index/{faiss.index, chunks.json}
+```
+
+Current chunk counts: 54 per domain.
 
 ## Setup
 
