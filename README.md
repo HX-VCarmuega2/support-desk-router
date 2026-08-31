@@ -303,16 +303,3 @@ Current averages: **relevance 9.9/10, completeness 9.0/10, accuracy 9.5/10** —
 * **Retries are limited to classification.** `classify_intent()` retries once on a malformed structured-output response, but embedding calls and answer generation have no retry/backoff — a transient rate limit or timeout there still propagates as an error. Acceptable for this project's scope, but a gap for a production deployment.
 * **Knowledge bases are synthetic.** All FAQ content describes a fictional company (Meridian Cloud) generated for this project, not real internal documentation.
 
-## Status
-
-- [x] Project scaffold
-- [x] Dependencies and environment setup
-- [x] Domain knowledge bases (HR, Tech, Finance)
-- [x] Vector stores per domain
-- [x] HR RAG agent
-- [x] Tech and Finance RAG agents
-- [x] Orchestrator with conditional routing (LangGraph)
-- [x] Test query suite
-- [x] Langfuse tracing
-- [x] Technical decisions writeup
-- [x] (Bonus) Evaluator agent with Langfuse Score API
